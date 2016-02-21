@@ -10,13 +10,10 @@ using BLL.Interface.Services;
 
 namespace BLL.Services
 {
-    public class AccountService : IAccountService
+    public class AccountService : BaseService, IAccountService
     {
-        private IUnitOfWork _uow;
-
-        public AccountService(IUnitOfWork uow)
+        public AccountService(IUnitOfWork uow) : base(uow)
         {
-            _uow = uow;
         }
 
         public bool Authendicate(string email, string password)

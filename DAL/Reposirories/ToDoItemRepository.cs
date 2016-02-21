@@ -5,8 +5,8 @@ using System.Data.Entity;
 
 namespace DAL.Reposirories
 {
-    public class ToDoItebRepository : Repository<ToDoItemDTO, ToDoItem>, IToDoItemRepository
+    public class ToDoItemRepository : Repository<ToDoItemDTO, ToDoItem>, IToDoItemRepository
     {
-        public ToDoItebRepository(DbContext context) : base(context) { }
+        public ToDoItemRepository(DbContext context) : base(context) { }
     }
 }

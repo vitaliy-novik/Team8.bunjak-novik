@@ -11,6 +11,11 @@ namespace DAL.Reposirories
         private IToDoListRepository toDoLists;
         private IToDoItemRepository toDoItems;
 
+        public UnitOfWork(DbContext db)
+        {
+            this.context = db;
+        }
+
         public IUserRepository Users
         {
             get

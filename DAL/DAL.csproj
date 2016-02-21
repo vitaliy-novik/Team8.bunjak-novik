@@ -56,11 +56,18 @@
     <Compile Include="ExpressionModifier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reposirories\Repository.cs" />
+    <Compile Include="Reposirories\ToDoItemRepository.cs" />
+    <Compile Include="Reposirories\ToDoLisRepository.cs" />
+    <Compile Include="Reposirories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL.Interface\DAL.Interface.csproj">
       <Project>{4253699e-b7eb-4780-a523-df162eec6a96}</Project>
       <Name>DAL.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ORM\ORM.csproj">
+      <Project>{abdc6756-1e1a-4a79-981c-39e6530f77ab}</Project>
+      <Name>ORM</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 
 namespace DAL.Interface.Repositories
 {
-    public interface IToDoItemRepository : IRepository<DalToDoItem>
+    public interface IToDoItemRepository : IRepository<ToDoItemDTO>
     {
     }
 }

@@ -40,9 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\DalToDoItem.cs" />
-    <Compile Include="DTO\DalToDoList.cs" />
-    <Compile Include="DTO\DalUser.cs" />
+    <Compile Include="DTO\ToDoItemDTO.cs" />
+    <Compile Include="DTO\ToDoListDTO.cs" />
+    <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="DTO\IDalEntity.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

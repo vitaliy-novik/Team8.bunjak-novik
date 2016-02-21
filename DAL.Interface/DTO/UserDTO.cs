@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interface.DTO
 {
-    public class DalUser : IDalEntity
+    public class UserDTO : IDalEntity
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

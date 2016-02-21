@@ -2,7 +2,7 @@
 
 namespace DAL.Interface.Repositories
 {
-    public interface IUserRepository : IRepository<DalUser>
+    public interface IUserRepository : IRepository<UserDTO>
     {
     }
 }

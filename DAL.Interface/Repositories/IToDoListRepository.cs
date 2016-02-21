@@ -2,7 +2,7 @@
 
 namespace DAL.Interface.Repositories
 {
-    public interface IToDoListRepository : IRepository<DalToDoList>
+    public interface IToDoListRepository : IRepository<ToDoListDTO>
     {
     }
 }

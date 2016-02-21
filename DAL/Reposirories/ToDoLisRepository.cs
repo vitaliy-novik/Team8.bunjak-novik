@@ -5,7 +5,7 @@ using System.Data.Entity;
 
 namespace DAL.Reposirories
 {
-    public class ToDoLisRepository : Repository<DalToDoList, ToDoList> , IToDoListRepository
+    public class ToDoLisRepository : Repository<ToDoListDTO, ToDoList> , IToDoListRepository
     {
         public ToDoLisRepository(DbContext context) : base(context) { }        
     }

@@ -2,7 +2,7 @@
 using System;
 using System.Data.Entity;
 
-namespace DAL.Reposirories
+namespace DAL.Repositories
 {
     public class UnitOfWork : IDisposable, IUnitOfWork
     {

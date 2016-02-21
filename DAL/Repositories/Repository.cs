@@ -1,5 +1,5 @@
-﻿using DAL.Interface;
-using DAL.Interface.DTO;
+﻿using DAL.Interface.DTO;
+using DAL.Interface.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

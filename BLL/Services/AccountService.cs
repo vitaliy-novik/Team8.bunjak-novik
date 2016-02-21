@@ -16,7 +16,7 @@ namespace BLL.Services
         {
         }
 
-        public bool Authendicate(string email, string password)
+        public bool Authenticate(string email, string password)
         {
             UserDTO user = _uow.Users.GetFirst(us => us.Email == email);
 
@@ -44,7 +44,7 @@ namespace BLL.Services
             throw new NotImplementedException();
         }
 
-        public bool Registeration(User user)
+        public bool Registration(User user)
         {
             UserDTO u = _uow.Users.GetFirst(us => us.Email == user.Email);
 

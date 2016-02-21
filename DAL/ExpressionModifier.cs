@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using System.Reflection;
+using System.Linq.Expressions;
 
 namespace DAL
 {
@@ -18,7 +19,7 @@ namespace DAL
 
         protected override Expression VisitMember(MemberExpression node)
         {
-            if (node.Member.MemberType == System.Reflection.MemberTypes.Property)
+            if (node.Member.MemberType == MemberTypes.Property)
             {
                 MemberExpression memberExpression = null;
                 var memberName = node.Member.Name;
@@ -26,10 +27,7 @@ namespace DAL
                 memberExpression = Expression.Property(Visit(node.Expression), otherMember);
                 return memberExpression;
             }
-            else
-            {
-                return base.VisitMember(node);
-            }
+            return base.VisitMember(node);
         }
     }
 }

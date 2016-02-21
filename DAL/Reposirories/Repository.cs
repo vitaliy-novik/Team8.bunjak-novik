@@ -11,7 +11,7 @@ namespace DAL.Reposirories
 {
     public class Repository<TDal, TOrm> : IRepository<TDal> where TDal : IDalEntity where TOrm : class
     {
-        private readonly DbContext context;
+        protected readonly DbContext context;
 
         public Repository(DbContext context)
         {
@@ -32,17 +32,13 @@ namespace DAL.Reposirories
 
         public IEnumerable<TDal> GetAll(Expression<Func<TDal, bool>> func)
         {
-            var param = Expression.Parameter(typeof(TOrm));
-            var result = new ExpressionModifier<TOrm>(param).Visit(func.Body);
-            Expression<Func<TOrm, bool>> lambda = Expression.Lambda<Func<TOrm, bool>>(result, param);
+            Expression<Func<TOrm, bool>> lambda = Modify(func);
             return context.Set<TOrm>().Where(lambda).Select(orm => Map<TOrm, TDal>(orm));
         }
 
         public TDal GetFirst(Expression<Func<TDal, bool>> func)
         {
-            var param = Expression.Parameter(typeof(TOrm));
-            var result = new ExpressionModifier<TOrm>(param).Visit(func.Body);
-            Expression<Func<TOrm, bool>> lambda = Expression.Lambda<Func<TOrm, bool>>(result, param);
+            Expression<Func<TOrm, bool>> lambda = Modify(func);
             return Map<TOrm, TDal>(context.Set<TOrm>().FirstOrDefault(lambda));
         }
 
@@ -51,6 +47,13 @@ namespace DAL.Reposirories
             var orm = Map<TDal, TOrm>(entity);
             context.Set<TOrm>().Attach(orm);
             context.Entry(orm).State = EntityState.Modified;
+        }
+
+        protected Expression<Func<TOrm, bool>> Modify(Expression<Func<TDal, bool>> func)
+        {
+            var param = Expression.Parameter(typeof(TOrm));
+            var result = new ExpressionModifier<TOrm>(param).Visit(func.Body);
+            return Expression.Lambda<Func<TOrm, bool>>(result, param);
         }
     }
 }

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace DAL.Interface
+namespace DAL.Interface.Repositories
 {
     public interface IRepository<TEntity> where TEntity : IDalEntity
     {

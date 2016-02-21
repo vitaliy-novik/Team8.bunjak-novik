@@ -3,7 +3,7 @@ using DAL.Interface.Repositories;
 using ORM.Entities;
 using System.Data.Entity;
 
-namespace DAL.Reposirories
+namespace DAL.Repositories
 {
     public class ToDoItemRepository : Repository<ToDoItemDTO, ToDoItem>, IToDoItemRepository
     {

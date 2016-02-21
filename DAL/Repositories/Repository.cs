@@ -7,7 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using static AutoMapper.Mapper;
 
-namespace DAL.Reposirories.Reposirories
+namespace DAL.Repositories
 {
     public class Repository<TDal, TOrm> : IRepository<TDal> where TDal : IDalEntity where TOrm : class
     {

@@ -16,7 +16,7 @@ namespace Wunderlist.Services
         
         public bool Authenticate(string email, string password)
         {
-            User user = _uow.Users.GetFirst(us => us.Email == email);
+            User user = GetByEmail(email);
 
             if (user != null && user.Password == password)
                 return true;
@@ -42,17 +42,20 @@ namespace Wunderlist.Services
             throw new NotImplementedException();
         }
 
-        public bool Registration(User user)
+        public void Registration(User user)
         {
-            /*User u = _uow.Users.GetFirst(us => us.Email == user.Email);
+            User u = _uow.Users.GetFirst(us => us.Email == user.Email);
 
             if (u != null)
-                return false;
-                */
+                throw new Exception("123!");
+                
             _uow.Users.Create(user);
             _uow.Commit();
+        }
 
-            return true;
+        public User GetByEmail(string email)
+        {
+            return _uow.Users.GetFirst(us => us.Email == email);
         }
     }
 }

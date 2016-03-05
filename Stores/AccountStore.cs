@@ -50,14 +50,15 @@ namespace Stores
             throw new NotImplementedException();
         }
 
-        public Task<User> FindByNameAsync(string userName)
+        public Task<User> FindByNameAsync(string email)
         {
-            return Task.FromResult<User>(null);
+            User user = _accountService.GetByEmail(email);
+            return Task.FromResult<User>(user);
         }
 
         public Task<string> GetPasswordHashAsync(User user)
         {
-            throw new NotImplementedException();
+            return Task.FromResult<string>(user.Password);
         }
 
         public Task<bool> HasPasswordAsync(User user)

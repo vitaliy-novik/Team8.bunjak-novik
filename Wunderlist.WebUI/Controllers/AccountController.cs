@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Wunderlist.InterfaceRepositories;
+using Wunderlist.Repositories;
 using Wunderlist.WebUI.Models.AccountView;
 
 namespace Wunderlist.WebUI.Controllers
@@ -15,9 +17,10 @@ namespace Wunderlist.WebUI.Controllers
     {
         readonly UserManager<User> userManager;
 
-        public AccountController(IUnitOfWork uow)
+        public AccountController()
         {
-            userManager = new UserManager<User>(new AccountStore());
+            IUnitOfWork uow = new UnitOfWork("DefaultConnection");
+            userManager = new UserManager<User>(new AccountStore(uow));
         }
 
         [AllowAnonymous]

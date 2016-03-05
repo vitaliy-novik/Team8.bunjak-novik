@@ -44,11 +44,11 @@ namespace Wunderlist.Services
 
         public bool Registration(User user)
         {
-            User u = _uow.Users.GetFirst(us => us.Email == user.Email);
+            /*User u = _uow.Users.GetFirst(us => us.Email == user.Email);
 
             if (u != null)
                 return false;
-
+                */
             _uow.Users.Create(user);
             _uow.Commit();
 

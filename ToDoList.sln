@@ -3,14 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{E0663398-0502-45CC-BA7E-C6D076F77B5A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORM", "ORM\ORM.csproj", "{ABDC6756-1E1A-4A79-981C-39E6530F77AB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.Interface", "DAL.Interface\DAL.Interface.csproj", "{4253699E-B7EB-4780-A523-DF162EEC6A96}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{01FE7A60-4904-4FC6-8D1C-E595A383FF8B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{A4F12D91-54BF-452F-A19F-F29247D54A3B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wunderlist.WebUI", "Wunderlist.WebUI\Wunderlist.WebUI.csproj", "{5C6438E2-B200-4DB1-9281-2244CEA71600}"
@@ -43,22 +35,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E0663398-0502-45CC-BA7E-C6D076F77B5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0663398-0502-45CC-BA7E-C6D076F77B5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0663398-0502-45CC-BA7E-C6D076F77B5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E0663398-0502-45CC-BA7E-C6D076F77B5A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ABDC6756-1E1A-4A79-981C-39E6530F77AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ABDC6756-1E1A-4A79-981C-39E6530F77AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ABDC6756-1E1A-4A79-981C-39E6530F77AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ABDC6756-1E1A-4A79-981C-39E6530F77AB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4253699E-B7EB-4780-A523-DF162EEC6A96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4253699E-B7EB-4780-A523-DF162EEC6A96}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4253699E-B7EB-4780-A523-DF162EEC6A96}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4253699E-B7EB-4780-A523-DF162EEC6A96}.Release|Any CPU.Build.0 = Release|Any CPU
-		{01FE7A60-4904-4FC6-8D1C-E595A383FF8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{01FE7A60-4904-4FC6-8D1C-E595A383FF8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{01FE7A60-4904-4FC6-8D1C-E595A383FF8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{01FE7A60-4904-4FC6-8D1C-E595A383FF8B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A4F12D91-54BF-452F-A19F-F29247D54A3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A4F12D91-54BF-452F-A19F-F29247D54A3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4F12D91-54BF-452F-A19F-F29247D54A3B}.Release|Any CPU.ActiveCfg = Release|Any CPU

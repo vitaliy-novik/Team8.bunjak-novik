@@ -51,13 +51,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BLL\BLL.csproj">
-      <Project>{01fe7a60-4904-4fc6-8d1c-e595a383ff8b}</Project>
-      <Name>BLL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{a4f12d91-54bf-452f-a19f-f29247d54a3b}</Project>
       <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wunderlist.InterfaceRepositories\Wunderlist.InterfaceRepositories.csproj">
+      <Project>{e7c87b62-7e76-40f9-bd3b-cdcb56d284a8}</Project>
+      <Name>Wunderlist.InterfaceRepositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wunderlist.Services\Wunderlist.Services.csproj">
+      <Project>{0ecf5c67-eed1-4657-b955-7359076aef8b}</Project>
+      <Name>Wunderlist.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

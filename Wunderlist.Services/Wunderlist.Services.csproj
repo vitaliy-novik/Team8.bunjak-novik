@@ -40,10 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountService.cs" />
     <Compile Include="BaseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{a4f12d91-54bf-452f-a19f-f29247d54a3b}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wunderlist.InterfaceRepositories\Wunderlist.InterfaceRepositories.csproj">
       <Project>{e7c87b62-7e76-40f9-bd3b-cdcb56d284a8}</Project>
       <Name>Wunderlist.InterfaceRepositories</Name>

@@ -1,21 +1,22 @@
-﻿using System;
+﻿using Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wunderlist.InterfaceRepositories;
 
-
-namespace BLL.Services
+namespace Wunderlist.Services
 {
     public class AccountService : BaseService
     {
-        /*public AccountService(IUnitOfWork uow) : base(uow)
+        public AccountService(IUnitOfWork uow) : base(uow)
         {
         }
-
+        
         public bool Authenticate(string email, string password)
         {
-            UserDTO user = _uow.Users.GetFirst(us => us.Email == email);
+            User user = _uow.Users.GetFirst(us => us.Email == email);
 
             if (user != null && user.Password == password)
                 return true;
@@ -23,10 +24,10 @@ namespace BLL.Services
             return false;
         }
 
-        public void ChangeName(Guid id, string newName)
+        public void ChangeName(string id, string newName)
         {
-            UserDTO user = _uow.Users.GetFirst(us => us.Id == id);
-            user.Name = newName;
+            User user = _uow.Users.GetFirst(us => us.Id == id);
+            user.UserName = newName;
             _uow.Users.Update(user);
             _uow.Commit();
         }
@@ -43,20 +44,15 @@ namespace BLL.Services
 
         public bool Registration(User user)
         {
-            UserDTO u = _uow.Users.GetFirst(us => us.Email == user.Email);
+            User u = _uow.Users.GetFirst(us => us.Email == user.Email);
 
-            if (user != null)
+            if (u != null)
                 return false;
 
-            _uow.Users.Create(new UserDTO
-            {
-                Email = user.Email,
-                Name = user.UserName,
-                Password = user.Password
-            });
+            _uow.Users.Create(user);
             _uow.Commit();
 
             return true;
-        }*/
+        }
     }
 }

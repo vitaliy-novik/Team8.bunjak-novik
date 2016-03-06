@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntityFrameworkContex;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -12,11 +13,10 @@ namespace Wunderlist.Repositories
     {
         private DbContext _context;
         
-        public UnitOfWork(DbContext db)
+        public UnitOfWork(string connectionString)
         {
-            this._context = db;
+            this._context = new DataContext(connectionString);
             this.Users = new AccoundRepository(_context);
-            
         }
 
         public IAccoundRepository Users { get; }

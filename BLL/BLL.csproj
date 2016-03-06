@@ -44,16 +44,6 @@
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\BaseService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DAL.Interface\DAL.Interface.csproj">
-      <Project>{4253699e-b7eb-4780-a523-df162eec6a96}</Project>
-      <Name>DAL.Interface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Entities\Entities.csproj">
-      <Project>{a4f12d91-54bf-452f-a19f-f29247d54a3b}</Project>
-      <Name>Entities</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

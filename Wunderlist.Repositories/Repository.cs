@@ -28,14 +28,14 @@ namespace Wunderlist.Repositories
             _context.Set<T>().Remove(t);
         }
 
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>> func)
+        public IEnumerable<T> GetAll(Func<T, bool> func)
         {
             throw new NotImplementedException();
         }
 
-        public T GetFirst(Expression<Func<T, bool>> func)
+        public T GetFirst(Func<T, bool> func)
         {
-            throw new NotImplementedException();
+            return _context.Set<T>().FirstOrDefault(func);
         }
 
         public void Update(T t)

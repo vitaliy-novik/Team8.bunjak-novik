@@ -8,12 +8,8 @@ using System.Threading.Tasks;
 
 namespace EntityFrameworkContex
 {
-    class DataContext : DbContext
+    public class DataContext : DbContext
     {
-        public DataContext() : base("DataContext")
-        {
-        }
-
         public DataContext(string connectionString) : base(connectionString)
         {
         }

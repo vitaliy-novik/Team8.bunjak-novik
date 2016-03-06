@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.Interface.DTO;
-using DAL.Interface.Repositories;
-using Entities;
+
 
 namespace BLL.Services
 {
     public class AccountService : BaseService
     {
-        public AccountService(IUnitOfWork uow) : base(uow)
+        /*public AccountService(IUnitOfWork uow) : base(uow)
         {
         }
 
@@ -59,6 +57,6 @@ namespace BLL.Services
             _uow.Commit();
 
             return true;
-        }
+        }*/
     }
 }

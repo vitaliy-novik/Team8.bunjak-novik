@@ -59,6 +59,10 @@
       <Project>{a4f12d91-54bf-452f-a19f-f29247d54a3b}</Project>
       <Name>Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EntityFrameworkContex\EntityFrameworkContex.csproj">
+      <Project>{2ebeefe1-e8ef-4533-99f0-55f407d1461e}</Project>
+      <Name>EntityFrameworkContex</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wunderlist.InterfaceRepositories\Wunderlist.InterfaceRepositories.csproj">
       <Project>{e7c87b62-7e76-40f9-bd3b-cdcb56d284a8}</Project>
       <Name>Wunderlist.InterfaceRepositories</Name>

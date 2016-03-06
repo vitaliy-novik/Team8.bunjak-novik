@@ -48,7 +48,7 @@ namespace Wunderlist.WebUI.Controllers
                 IdentityResult result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Login", "Account");
+                    return RedirectToAction("Inbox", "Home");
                 }
                 else
                     ModelState.AddModelError("UserName", "Error while creating the user!");
@@ -85,7 +85,7 @@ namespace Wunderlist.WebUI.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Inbox", "Home");
                     }
                 }
                 else

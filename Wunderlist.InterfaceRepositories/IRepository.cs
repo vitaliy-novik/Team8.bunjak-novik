@@ -9,8 +9,8 @@ namespace Wunderlist.InterfaceRepositories
 {
     public interface IRepository<TEntity>
     {
-        IEnumerable<TEntity> GetAll(Func<TEntity, bool> func);
-        TEntity GetFirst(Func<TEntity, bool> func);
+        Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> func);
+        Task<TEntity> GetFirstAsync(Expression<Func<TEntity, bool>> func);
         void Create(TEntity entity);
         void Delete(TEntity entity);
         void Update(TEntity entity);

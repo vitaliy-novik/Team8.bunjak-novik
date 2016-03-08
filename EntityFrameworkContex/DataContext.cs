@@ -15,5 +15,7 @@ namespace EntityFrameworkContex
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<ToDoList> ToDoLists { get; set; }
+        public DbSet<ToDoItem> ToDoItems { get; set; }
     }
 }

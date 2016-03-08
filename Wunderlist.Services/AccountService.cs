@@ -14,9 +14,9 @@ namespace Wunderlist.Services
         {
         }
         
-        public bool Authenticate(string email, string password)
+        public async Task<bool> Authenticate(string email, string password)
         {
-            User user = GetByEmail(email);
+            User user = await GetByEmail(email);
 
             if (user != null && user.Password == password)
                 return true;
@@ -24,9 +24,9 @@ namespace Wunderlist.Services
             return false;
         }
 
-        public void ChangeName(string id, string newName)
+        public async Task ChangeName(string id, string newName)
         {
-            User user = _uow.Users.GetFirst(us => us.Id == id);
+            User user = await _uow.Users.GetFirstAsync(us => us.Id == id);
             user.UserName = newName;
             _uow.Users.Update(user);
             _uow.Commit();
@@ -42,20 +42,20 @@ namespace Wunderlist.Services
             throw new NotImplementedException();
         }
 
-        public void Registration(User user)
+        public async Task Registration(User user)
         {
-            User u = _uow.Users.GetFirst(us => us.Email == user.Email);
+            User u = await _uow.Users.GetFirstAsync(us => us.Email == user.Email);
 
             if (u != null)
-                throw new Exception("123!");
+                throw new Exception("the user exists");
                 
             _uow.Users.Create(user);
             _uow.Commit();
         }
 
-        public User GetByEmail(string email)
+        public async Task<User> GetByEmail(string email)
         {
-            return _uow.Users.GetFirst(us => us.Email == email);
+            return await _uow.Users.GetFirstAsync(us => us.Email == email);
         }
     }
 }

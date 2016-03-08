@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class Profile
+    public class Profile : Entity
     {
     }
 }

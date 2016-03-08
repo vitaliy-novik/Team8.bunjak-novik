@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Wunderlist.InterfaceRepositories;
 
 namespace Wunderlist.Repositories
@@ -17,9 +14,14 @@ namespace Wunderlist.Repositories
         {
             this._context = new DataContext(connectionString);
             this.Users = new AccoundRepository(_context);
+            this.ToDoItems = new ToDoItemRepository(_context);
         }
 
         public IAccoundRepository Users { get; }
+
+        public IToDoItemRepository ToDoItems { get; }
+
+        public IToDoListRepository ToDoLists { get; }
         
         public void Commit()
         {

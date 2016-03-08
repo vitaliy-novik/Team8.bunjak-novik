@@ -1,9 +1,5 @@
 ﻿using Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Wunderlist.InterfaceRepositories;
 
 namespace Wunderlist.Services
@@ -50,6 +46,15 @@ namespace Wunderlist.Services
                 throw new Exception("123!");
                 
             _uow.Users.Create(user);
+            _uow.Commit();
+
+            ToDoList list = new ToDoList
+            {
+                Name = "inbox",
+                User = user
+            };
+
+            _uow.ToDoLists.Create(list);
             _uow.Commit();
         }
 

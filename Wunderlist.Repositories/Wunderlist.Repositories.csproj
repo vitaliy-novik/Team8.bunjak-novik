@@ -52,6 +52,8 @@
     <Compile Include="AccoundRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
+    <Compile Include="ToDoItemRepository.cs" />
+    <Compile Include="ToDoListRepository.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -10,10 +10,10 @@ namespace Entities
     {
         public ToDoItem()
         {
-            Id = Guid.NewGuid();
+            Id = Guid.NewGuid().ToString();
         }
 
-        public Guid Id { get; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Note { get; set; }
         public DateTime Date { get; set; }

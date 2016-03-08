@@ -1,11 +1,13 @@
 ﻿var itemsModule = angular.module("itemsApp", []);
 
-itemsModule.controller("addController", function ($scope) {
+itemsModule.controller("addController", function ($scope, $http) {
 
-    $scope.tasks = [{ name: 'AAAAAAAAAAAAAAAA', completed : false },
-        { name: 'BBBBBBBBBBBBBBBBB', completed : false },
-        { name: 'CCCCCCCCCCCCCCc', completed : true }
+    $scope.tasks = [{ name: 'AAAAAAAAAAAAAAAA', completed: false },
+        { name: 'BBBBBBBBBBBBBBBBB', completed: false },
+        { name: 'CCCCCCCCCCCCCCc', completed: true }
     ];
+
+    $scope.newTask = {};
 
     $scope.hideCompleted = true;
 
@@ -15,9 +17,13 @@ itemsModule.controller("addController", function ($scope) {
     };
 
     $scope.addItem = function () {
-        if (this.name) {
-            $scope.tasks.push( {name : $scope.name, completed : false});
-            $scope.name = "";
+        if (this.newTask.name) {
+            $scope.newTask.completed = false;
+            $scope.newTask.List = 'inbox';
+            $scope.newTask.Date = null;
+            $http.post('../api/ToDoItems', $scope.newTask);
+            $scope.tasks.push( $scope.newTask );
+            $scope.newTask.name = "";
             console.log($scope.tasks);
         }
     };

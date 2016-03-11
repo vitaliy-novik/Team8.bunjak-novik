@@ -2,12 +2,25 @@
 
 itemsModule.controller("addController", function ($scope, $http) {
 
-    $scope.tasks = [{ name: 'AAAAAAAAAAAAAAAA', completed: false },
-        { name: 'BBBBBBBBBBBBBBBBB', completed: false },
-        { name: 'CCCCCCCCCCCCCCc', completed: true }
-    ];
+    $scope.tasks = [];
+
+    $scope.lists = [];
+
+    $scope.activeList = "Inbox";
+
+    angular.element(document).ready(function () {
+        $http.get('../api/ToDoList').success(function (data) {
+            console.dir(data);
+        });
+
+        $http.get('../api/ToDoList/' + $scope.activeList).success(function (data) {
+            console.dir(data);
+        });
+    });    
 
     $scope.newTask = {};
+
+    $scope.newList = {};
 
     $scope.hideCompleted = true;
 
@@ -25,6 +38,13 @@ itemsModule.controller("addController", function ($scope, $http) {
             $scope.tasks.push( $scope.newTask );
             $scope.newTask.name = "";
             console.log($scope.tasks);
+        }
+    };
+
+    $scope.addList = function () {
+        if (this.newList.name) {
+            console.log("added");
+            $http.post('../api/ToDoList', $scope.newList);
         }
     };
     

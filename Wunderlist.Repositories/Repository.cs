@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using Wunderlist.InterfaceRepositories;
 
 namespace Wunderlist.Repositories
@@ -30,7 +27,7 @@ namespace Wunderlist.Repositories
 
         public IEnumerable<T> GetAll(Func<T, bool> func)
         {
-            throw new NotImplementedException();
+            return _context.Set<T>().Where(func).ToList();
         }
 
         public T GetFirst(Func<T, bool> func)

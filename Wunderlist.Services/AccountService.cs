@@ -48,14 +48,14 @@ namespace Wunderlist.Services
             _uow.Users.Create(user);
             _uow.Commit();
 
-            ToDoList list = new ToDoList
-            {
-                Name = "inbox",
-                User = user
-            };
+            //ToDoList list = new ToDoList
+            //{
+            //    Name = "inbox",
+            //    User = user
+            //};
 
-            _uow.ToDoLists.Create(list);
-            _uow.Commit();
+            //_uow.ToDoLists.Create(list);
+            //_uow.Commit();
         }
 
         public User GetByEmail(string email)

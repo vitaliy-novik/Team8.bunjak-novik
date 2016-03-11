@@ -22,11 +22,6 @@ namespace Wunderlist.WebUI.Controllers
             service = new TaskService(uow);
         }
 
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         public void Post([FromBody]AddTaskViewModel value)
         {
             service.AddTask(value.Name, value.Date, value.List);

@@ -15,6 +15,7 @@ namespace Wunderlist.Repositories
             this._context = new DataContext(connectionString);
             this.Users = new AccoundRepository(_context);
             this.ToDoItems = new ToDoItemRepository(_context);
+            this.ToDoLists = new ToDoListRepository(_context);
         }
 
         public IAccoundRepository Users { get; }

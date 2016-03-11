@@ -26,5 +26,29 @@ namespace Wunderlist.Services
             _uow.ToDoItems.Create(i);
             _uow.Commit();
         }
+
+        public IEnumerable<ToDoList> GetAllLists(string name)
+        {
+            var u = _uow.Users.GetFirst(us => us.UserName == name);
+            return u.ToDoLists;
+        }
+
+        public ToDoList GetList(string userName, string listName)
+        {
+            return _uow.ToDoLists.GetFirst(l => l.Name == listName && l.User.UserName == userName);
+        }
+
+        public void AddList(string name, string email)
+        {
+            var user = _uow.Users.GetFirst(l => l.UserName == email);
+            var list = new ToDoList
+            {
+                Name = name,
+                User = user
+            };
+
+            _uow.ToDoLists.Create(list);
+            _uow.Commit();
+        }
     }
 }

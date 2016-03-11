@@ -72,7 +72,7 @@
 </head>
 
 
-<body class="wlapp-parent chrome animate platform-windows application-main background-06 focus-sidebar" style="opacity: 1;" role="application" id="wunderlist-base">
+<body ng-app="itemsApp" ng-controller="addController" class="wlapp-parent chrome animate platform-windows application-main background-06 focus-sidebar" style="opacity: 1;" role="application" id="wunderlist-base">
     <ul id="e38f649d-5e49-4d25-87b5-e653-c44d4205" class="context-menu hidden"></ul>
     <ul id="14ae08cc-c40c-43f0-8ae6-e557-c48c970f" class="context-menu hidden"></ul>
     <ul id="d051758e-972d-4d1a-be61-4170-020f3c33" class="context-menu hidden"></ul>
@@ -81,6 +81,44 @@
     <div class="main-interface">
         <div id="modals">
             <ul class="reminders dialog-wrapper"></ul>
+            <div class="dialog-wrapper">
+                <div id="" class="dialog listOptions shown">
+                    <div class="content">
+                        <form ng-submit="addList()">
+                            <div class="content-header" tabindex="0">
+                                <h3 class="center">
+                                    <text rel="label_new_list">Создать список</text>
+                                </h3>
+                                <div class="separator noline">
+                                    <input ng-model="newList.name" class="big listOptions-title" type="text" data-key-placeholder="placeholder_list_name" data-key-aria-label="placeholder_list_name" maxlength="255" value="" placeholder="Название списка" aria-label="Название списка">
+                                </div>
+                                <div class="separator noline">
+                                    <ul class="content-tabs">
+                                        <li>
+                                            <a tabindex="0" role="button" rel="members" class="active"><text rel="sharing_list_members">Участники списка</text></a>
+                                        </li>
+                                        <li>
+                                            <a tabindex="0" role="button" rel="options"><text rel="sharing_list_options">Параметры списка</text></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="content-footer">
+                                <div class="cols">
+                                    <div class="col-40">     </div>
+                                    <div class="col-30">
+                                        <!--<button class="cancel full close"><text rel="button_cancel">Отмена</text></button>-->
+                                    </div>
+                                    <div class="col-30">
+                                        <input type="submit" class="submit full blue" aria-disabled="true" tabindex="-1">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <ul class="content-people inviteAutocomplete hidden"></ul>
+                </div>
+            </div>
         </div>
         <div id="lists" role="navigation">
             <div tabindex="0" class="lists-inner">
@@ -207,7 +245,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tasks-scroll" ng-app="itemsApp" ng-controller="addController">
+            <div class="tasks-scroll">
                 <div class="addTask">
                     <form ng-submit="addItem()">
                         <div class="addTask-meta">

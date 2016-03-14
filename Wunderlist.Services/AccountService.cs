@@ -24,22 +24,12 @@ namespace Wunderlist.Services
             return false;
         }
 
-        public async Task ChangeName(string id, string newName)
+        public async Task ChangeName(string email, string newName)
         {
-            User user = await _uow.Users.GetFirstAsync(us => us.Id == id);
+            User user = await _uow.Users.GetFirstAsync(us => us.Email == email);
             user.UserName = newName;
             _uow.Users.Update(user);
             _uow.Commit();
-        }
-
-        public void ChangePhoto(Guid id, byte[] photo)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Profile GetProfile(Guid id)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task Registration(User user)
@@ -56,6 +46,15 @@ namespace Wunderlist.Services
         public async Task<User> GetByEmail(string email)
         {
             return await _uow.Users.GetFirstAsync(us => us.Email == email);
+        }
+
+        public async Task ChangePhoto(string email, byte[] photo)
+        {
+            User user = await GetByEmail(email);
+            user.Photo = photo;
+
+            _uow.Users.Update(user);
+            _uow.Commit();
         }
     }
 }

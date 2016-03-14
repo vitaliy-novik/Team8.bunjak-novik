@@ -6,12 +6,18 @@ using System.Web.Mvc;
 
 namespace Wunderlist.WebUI.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
 
+            return View();
+        }
+
+        public ActionResult Inbox()
+        {
             return View();
         }
     }

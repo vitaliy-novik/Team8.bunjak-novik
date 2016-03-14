@@ -69,6 +69,7 @@ namespace Wunderlist.WebUI.Controllers
 
                 if (user != null)
                 {
+                    user.UserName = user.Email;
                     IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
                     authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
 
@@ -82,7 +83,7 @@ namespace Wunderlist.WebUI.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Inbox", "Home");
                     }
                 }
                 else
@@ -101,7 +102,6 @@ namespace Wunderlist.WebUI.Controllers
         }
         
         [HttpPost]
-        [Authorize]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             if (ModelState.IsValid)

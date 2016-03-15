@@ -6,16 +6,26 @@ itemsModule.controller("addController", function ($scope, $http) {
 
     $scope.lists = [];
 
-    $scope.activeList = "Inbox";
+    $scope.activeList = "";
+
+    $scope.hideCreateList = false;
+    $scope.showCreateList = function () {
+        $scope.hideCreateList = !$scope.hideCreateList;
+    }
 
     angular.element(document).ready(function () {
         $http.get('../api/ToDoList').success(function (data) {
-            console.dir(data);
+            console.log(data);
+            $scope.lists = data;
+            $scope.activeList = $scope.lists[0].name;
+        }).then(function () {
+            $http.get('../api/ToDoList/' + $scope.activeList).success(function (data) {
+            console.log(data);
+            $scope.tasks = data;            
+        });
         });
 
-        $http.get('../api/ToDoList/' + $scope.activeList).success(function (data) {
-            console.dir(data);
-        });
+        
     });    
 
     $scope.newTask = {};
@@ -26,25 +36,29 @@ itemsModule.controller("addController", function ($scope, $http) {
 
     $scope.show = function () {
         $scope.hideCompleted = !$scope.hideCompleted;
-        console.dir($scope.hideCompleted);
     };
 
     $scope.addItem = function () {
         if (this.newTask.name) {
             $scope.newTask.completed = false;
-            $scope.newTask.List = 'inbox';
+            $scope.newTask.List = $scope.activeList;
             $scope.newTask.Date = null;
-            $http.post('../api/ToDoItems', $scope.newTask);
-            $scope.tasks.push( $scope.newTask );
-            $scope.newTask.name = "";
-            console.log($scope.tasks);
+            $http.post('../api/ToDoItems', $scope.newTask).success(function () {
+                $scope.tasks.push($scope.newTask);
+                $scope.newTask = null;
+                console.log($scope.tasks);
+            });
+            
         }
     };
 
     $scope.addList = function () {
         if (this.newList.name) {
-            console.log("added");
-            $http.post('../api/ToDoList', $scope.newList);
+            $http.post('../api/ToDoList', $scope.newList).success(function () {
+                $scope.hideCreateList = false;
+                $scope.lists.push($scope.newList);
+                $scope.newList = null;
+            });
         }
     };
     

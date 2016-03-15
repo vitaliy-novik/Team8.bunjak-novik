@@ -6,6 +6,8 @@ using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Web.Http;
+using System.Web.Http.Results;
+using System.Web.Mvc;
 using Wunderlist.InterfaceRepositories;
 using Wunderlist.Repositories;
 using Wunderlist.Services;
@@ -23,14 +25,26 @@ namespace Wunderlist.WebUI.Controllers
             service = new TaskService(uow);
         }
 
-        public IEnumerable<ToDoList> Get()
+        public IHttpActionResult Get()
         {
-            return service.GetAllLists(User.Identity.Name);
+            var a = service.GetAllLists(User.Identity.Name).ToArray();
+            return Ok(a.Select(b => new
+            {
+                name = b.Name
+            }).ToArray());
+            
         }
 
-        public ToDoList Get(string id)
+        public IHttpActionResult Get(string id)
         {
-            return service.GetList(User.Identity.Name, id);
+            var r = service.GetList(User.Identity.Name, id);
+            return Ok(r.Items.Select(i => new
+            {
+                name = i.Name,
+                completed = i.IsCompleted,
+                date = i.Date
+            }
+            ));
         }
 
         public void Post([FromBody]AddListViewModel value)

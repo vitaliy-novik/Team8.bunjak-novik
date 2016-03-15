@@ -69,6 +69,7 @@ namespace Wunderlist.WebUI.Controllers
 
                 if (user != null)
                 {
+                    user.UserName = user.Email;
                     IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
                     authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
 

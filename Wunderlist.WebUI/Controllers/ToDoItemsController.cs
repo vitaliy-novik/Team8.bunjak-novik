@@ -24,7 +24,8 @@ namespace Wunderlist.WebUI.Controllers
 
         public void Post([FromBody]AddTaskViewModel value)
         {
-            service.AddTask(value.Name, value.Date, value.List);
+            string userName = User.Identity.Name;
+            service.AddTask(userName, value.Name, DateTime.Now, value.List);
         }
     }
 }

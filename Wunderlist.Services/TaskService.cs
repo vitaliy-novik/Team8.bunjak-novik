@@ -12,35 +12,34 @@ namespace Wunderlist.Services
     {
         public TaskService(IUnitOfWork uow) : base(uow) { }
 
-        public void AddTask(string name, DateTime date, string list)
+        public void AddTask(string email, string name, DateTime date, string listName)
         {
-            var li = _uow.ToDoLists.GetFirst(l => l.Name == list);
-            var i = new ToDoItem
+            var list = _uow.Users.GetFirst(u => u.Email == email)
+                .ToDoLists.FirstOrDefault(l => l.Name == listName);
+            var task = new ToDoItem
             {
                 Name = name,
                 Date = date,
-                List = li,
-                IsCompleted = false,
-                Note = null
+                List = list
             };
-            _uow.ToDoItems.Create(i);
+            _uow.ToDoItems.Create(task);
             _uow.Commit();
         }
 
-        public IEnumerable<ToDoList> GetAllLists(string name)
+        public IEnumerable<ToDoList> GetAllLists(string email)
         {
-            var u = _uow.Users.GetFirst(us => us.UserName == name);
-            return u.ToDoLists;
+            return _uow.Users.GetFirst(us => us.Email == email).ToDoLists;
         }
 
-        public ToDoList GetList(string userName, string listName)
+        public ToDoList GetList(string email, string listName)
         {
-            return _uow.ToDoLists.GetFirst(l => l.Name == listName && l.User.UserName == userName);
+            return _uow.Users.GetFirst(u => u.Email == email).
+                ToDoLists.FirstOrDefault(l => l.Name == listName);
         }
 
         public void AddList(string name, string email)
         {
-            var user = _uow.Users.GetFirst(l => l.UserName == email);
+            var user = _uow.Users.GetFirst(l => l.Email == email);
             var list = new ToDoList
             {
                 Name = name,

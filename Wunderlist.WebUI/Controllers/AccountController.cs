@@ -2,9 +2,6 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Stores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -48,7 +45,7 @@ namespace Wunderlist.WebUI.Controllers
                 IdentityResult result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Login", "Account");
+                    return RedirectToAction("Inbox", "Home");
                 }
                 else
                     ModelState.AddModelError("UserName", "Error while creating the user!");
@@ -72,6 +69,7 @@ namespace Wunderlist.WebUI.Controllers
 
                 if (user != null)
                 {
+                    user.UserName = user.Email;
                     IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
                     authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
 
@@ -85,7 +83,7 @@ namespace Wunderlist.WebUI.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Inbox", "Home");
                     }
                 }
                 else

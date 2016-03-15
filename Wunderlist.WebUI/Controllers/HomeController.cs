@@ -14,5 +14,10 @@ namespace Wunderlist.WebUI.Controllers
 
             return View();
         }
+
+        public ActionResult Inbox()
+        {
+            return View();
+        }
     }
 }

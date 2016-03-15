@@ -5,82 +5,15 @@
 <html dir="ltr" lang="ru_RU">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
     <title>Входящие - Wunderlist</title>
-
-    <!-- Meta Descriptors -->
-    <meta name="description" content="Over 13 million people already use Wunderlist to manage tasks, to-do lists, and to get things done.  Wunderlist is the best to-do list for you, your team or your family.">
-    <meta name="thumbnail" content="https://www.wunderlist.com/icon.png">
-
-    <link rel="author" href="humans.txt">
-
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="google" value="notranslate">
-
-    <meta name="apple-itunes-app" content="app-id=406644151">
-
-    <!-- Google Webmaster Tools DO NOT REMOVE -->
-    <meta name="google-site-verification" content="Ra-CDN32q8k5C3YzXgNxRj75pvM1qyp5UXna3XJ5qHo">
-    <!-- Pinned Site -->
-    <!-- Main Data -->
-    <meta name="application-name" content="Wunderlist">
-    <meta name="msapplication-tooltip" content="Wunderlist 2">
-    <meta name="msapplication-TileColor" content="#6176ff">
-    <meta name="msapplication-TileImage" content="f417268b-81a2-43e0-a800-60bf210ad5a1.png">
-    <meta name="msapplication-starturl" content="./">
-
-    <!-- Pinned Site Tasks -->
-    <meta content="name=Inbox;
-      action-uri=./#/lists/inbox;
-      icon-uri=//static.wunderlist.com/44685ca8cfaade90d24f718bf876257562a21214/images/favicon.ico;
-      window-type=self;" name="msapplication-task">
-    <meta content="name=Starred;
-      action-uri=./#/lists/starred;
-      icon-uri=//static.wunderlist.com/44685ca8cfaade90d24f718bf876257562a21214/images/favicon.ico;
-      window-type=self;" name="msapplication-task">
-    <meta content="name=Today;
-      action-uri=./#/lists/today;
-      icon-uri=//static.wunderlist.com/44685ca8cfaade90d24f718bf876257562a21214/images/favicon.ico;
-      window-type=self;" name="msapplication-task">
-    <meta content="name=Week;
-      action-uri=./#/lists/week;
-      icon-uri=//static.wunderlist.com/44685ca8cfaade90d24f718bf876257562a21214/images/favicon.ico;
-      window-type=self;" name="msapplication-task">
-    <meta content="name=All;
-      action-uri=./#/lists/all;
-      icon-uri=//static.wunderlist.com/44685ca8cfaade90d24f718bf876257562a21214/images/favicon.ico;
-      window-type=self;" name="msapplication-task">
-    <meta content="name=Completed;
-      action-uri=./#/lists/completed;
-      icon-uri=//static.wunderlist.com/44685ca8cfaade90d24f718bf876257562a21214/images/favicon.ico;
-      window-type=self;" name="msapplication-task">
-    <!-- End Pinned Site -->
-    <!-- for installable chrome app -->
-    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/fjliknjliaohjgjajlgolhijphojjdkc">
-    <!-- for installable add to wunderlist chrome extension -->
-    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/dmnddeddcgdllibmaodanoonljfdmooc">
-
     <link href="~/Content/inbox.css" rel="stylesheet" />
-
-    <script type="text/javascript">this.gitHash = '3.19.1 [95c3dc914057c95c6307cff6e5052b544470508f] Thu Feb 04 2016  10:27:23 GMT+0100 (CET)';</script>
-
-    <script type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&amp;s=1"></script>
-    <script type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/v7.0/7.0.20150902134620.61/js/en-us/veapicore.js"></script>
-
 </head>
 
 
 <body ng-app="itemsApp" ng-controller="addController" class="wlapp-parent chrome animate platform-windows application-main background-06 focus-sidebar" style="opacity: 1;" role="application" id="wunderlist-base">
-    <ul id="e38f649d-5e49-4d25-87b5-e653-c44d4205" class="context-menu hidden"></ul>
-    <ul id="14ae08cc-c40c-43f0-8ae6-e557-c48c970f" class="context-menu hidden"></ul>
-    <ul id="d051758e-972d-4d1a-be61-4170-020f3c33" class="context-menu hidden"></ul>
-    <ul id="9f0ef6b0-42ce-41da-ae59-f919-60c7434d" class="context-menu hidden"></ul>
-    <ul id="e81a4161-9359-4ba6-aff9-4f83-6b2fb434" class="context-menu hidden"></ul>
+
     <div class="main-interface">
         <div id="modals">
-            
             <div class="dialog-wrapper" ng-show="hideCreateList">
                 <div id="" class="dialog listOptions shown">
                     <div class="content">
@@ -136,7 +69,7 @@
                                                                     <div id="dropZone">
                                                                         <span class="icon options" style="display: block;"></span>
                                                                         <div id="photo">
-                                                                            <img src="https://a.wunderlist.com/api/v1/avatar?user_id=20661012&amp;size=128&amp;timestamp=1457726182">
+                                                                            <img ng-src="data:image/JPEG;base64,{{profile.photo}}" />
                                                                         </div>
                                                                         <div class="drop-message">
                                                                             <span><text rel="settings_account_drop_image">Перетащите фото сюда</text></span>
@@ -178,7 +111,7 @@
                                                     <text rel="label_name">Имя</text>
                                                 </div>
                                                 <div class="col-68">
-                                                    <input type="text" id="edit-full-name" data-key-aria-label="label_name" data-key-placeholder="label_name" value="Buniak Maxim" initial-value="" tabindex="0" placeholder="Имя" aria-label="Имя">
+                                                    <input type="text" id="edit-full-name" data-key-aria-label="label_name" data-key-placeholder="label_name" value="{{profile.userName}}" initial-value="" tabindex="0" placeholder="Имя" aria-label="Имя">
                                                 </div>
                                             </div> <!-- Email -->
                                             <div class="cols">
@@ -341,12 +274,12 @@
                     <span class="search-icon-wrapper"> <a class="search-icon" role="button" tabindex="0" data-key-aria-label="aria_search" data-key-title="aria_search" title="Поиск" aria-label="Поиск"><svg class="search rtl-flip" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <g stroke="none" stroke-width="1" fill-rule="evenodd"> <g> <path d="M8.5025,15 C4.9225,15 2.0025,12.08 2.0025,8.5 C2.0025,4.92 4.9225,2 8.5025,2 C12.0825,2 15.0025,4.92 15.0025,8.5 C15.0025,12.08 12.0825,15 8.5025,15 L8.5025,15 Z M8.5025,3 C5.4625,3 3.0025,5.46 3.0025,8.5 C3.0025,11.54 5.4625,14 8.5025,14 C11.5425,14 14.0025,11.54 14.0025,8.5 C14.0025,5.46 11.5425,3 8.5025,3 L8.5025,3 Z M17.5025,18 C17.3825,18 17.2425,17.96 17.1425,17.86 L13.6425,14.36 C13.4625,14.16 13.4625,13.84 13.6425,13.64 C13.8425,13.46 14.1625,13.46 14.3625,13.64 L17.8625,17.14 C18.0425,17.34 18.0425,17.66 17.8625,17.86 C17.7625,17.96 17.6225,18 17.5025,18 L17.5025,18 Z" id="z"></path> </g> </g> </svg></a> <a class="search-stop-icon hidden" role="button" tabindex="0" data-key-aria-label="aria_exit_search" data-key-title="aria_exit_search" title="Выйти из поиска" aria-label="Выйти из поиска"><svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g> <path d="M9.991,10.832c-1.716,1.671 -3.445,3.329 -5.137,5.022c-0.058,0.052 -0.12,0.095 -0.195,0.12c-0.039,0.013 -0.05,0.014 -0.09,0.021c-0.046,0.004 -0.046,0.004 -0.092,0.004c-0.078,-0.007 -0.151,-0.024 -0.22,-0.062c-0.193,-0.108 -0.294,-0.336 -0.244,-0.551c0.018,-0.078 0.055,-0.143 0.102,-0.205c1.627,-1.785 3.329,-3.499 5.053,-5.19c-1.671,-1.716 -3.329,-3.445 -5.022,-5.137c-0.052,-0.058 -0.095,-0.12 -0.12,-0.195c-0.081,-0.242 0.039,-0.513 0.272,-0.616c0.056,-0.025 0.117,-0.04 0.179,-0.042c0.128,-0.006 0.242,0.038 0.342,0.114c1.785,1.627 3.499,3.329 5.19,5.053c1.716,-1.671 3.445,-3.329 5.137,-5.022c0.058,-0.052 0.12,-0.095 0.195,-0.12c0.059,-0.02 0.121,-0.028 0.182,-0.025c0.255,0.011 0.465,0.221 0.476,0.476c0.006,0.128 -0.038,0.242 -0.114,0.342c-1.627,1.785 -3.329,3.499 -5.053,5.19c1.671,1.716 3.329,3.445 5.022,5.137c0.052,0.058 0.095,0.12 0.12,0.195c0.07,0.21 -0.009,0.447 -0.191,0.571c-0.066,0.045 -0.137,0.069 -0.214,0.083c-0.046,0.004 -0.046,0.004 -0.092,0.004c-0.078,-0.007 -0.151,-0.024 -0.22,-0.062c-0.036,-0.02 -0.044,-0.028 -0.076,-0.052c-1.785,-1.627 -3.499,-3.329 -5.19,-5.053Z"></path> </g> </svg> </a> </span>
                 </div>
                 <div id="user-toolbar">
-                    <a class="user" data-path="me" role="button" tabindex="0" aria-label="Buniak Maxim Меню пользователя." aria-expanded="false" aria-haspopup="true" onclick="openbox('settings'); return false">
+                    <a class="user" data-path="me" role="button" tabindex="0" aria-label="Меню пользователя." aria-expanded="false" aria-haspopup="true" onclick="openbox('settings'); return false">
                         <span class="user-avatar">
                             <div class="avatar medium" title="Buniak Maxim">
-                                <img src="https://a.wunderlist.com/api/v1/avatar?user_id=20661012&amp;size=32&amp;timestamp=1456748947">
+                               <img ng-src="data:image/JPEG;base64,{{profile.photo}}"/>
                             </div>
-                        </span> <span class="user-name">Buniak Maxim</span> <span class="user-arrow"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g> <path d="M10.502,13c-0.132,0 -0.26,-0.053 -0.354,-0.146l-4.002,-4c-0.195,-0.195 -0.195,-0.512 0,-0.708c0.195,-0.195 0.512,-0.195 0.707,0l3.649,3.647l3.644,-3.647c0.195,-0.195 0.512,-0.195 0.707,0c0.195,0.195 0.195,0.512 0,0.708l-3.997,4c-0.094,0.093 -0.221,0.146 -0.354,0.146"></path> </g> </svg> </span>
+                        </span> <span class="user-name">{{profile.userName}}</span> <span class="user-arrow"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g> <path d="M10.502,13c-0.132,0 -0.26,-0.053 -0.354,-0.146l-4.002,-4c-0.195,-0.195 -0.195,-0.512 0,-0.708c0.195,-0.195 0.512,-0.195 0.707,0l3.649,3.647l3.644,-3.647c0.195,-0.195 0.512,-0.195 0.707,0c0.195,0.195 0.195,0.512 0,0.708l-3.997,4c-0.094,0.093 -0.221,0.146 -0.354,0.146"></path> </g> </svg> </span>
                         <div id="sync">
                             <span class="offline-wrapper hidden"><svg class="offline" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g> <path d="M7.472,9.999l2.028,0c0.147,0 0.287,0.064 0.382,0.177c0.095,0.112 0.136,0.26 0.111,0.405l-0.587,3.525l3.192,-5.107l-2.098,0c-0.15,0 -0.291,-0.067 -0.386,-0.183c-0.095,-0.116 -0.133,-0.268 -0.104,-0.415l0.543,-2.716l-3.081,4.314ZM8.5,16.999c-0.059,0 -0.119,-0.011 -0.177,-0.032c-0.223,-0.085 -0.355,-0.315 -0.316,-0.55l0.903,-5.418l-2.41,0c-0.187,0 -0.359,-0.104 -0.444,-0.271c-0.086,-0.167 -0.071,-0.367 0.038,-0.52l4.999,-7c0.138,-0.192 0.394,-0.26 0.607,-0.168c0.215,0.094 0.336,0.326 0.291,0.557l-0.88,4.402l2.389,0c0.182,0 0.35,0.099 0.438,0.258c0.088,0.159 0.083,0.353 -0.014,0.507l-5,8c-0.093,0.15 -0.255,0.235 -0.424,0.235"></path> </g> </svg> </span>
                             <span class="syncing-wrapper hidden"><svg class="sync" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g> <g> <path d="M10,16c-0.281,-0.002 -0.56,-0.019 -0.839,-0.058c-0.562,-0.079 -1.113,-0.238 -1.631,-0.472c-1.098,-0.497 -2.035,-1.328 -2.661,-2.359c-0.317,-0.521 -0.553,-1.091 -0.698,-1.684c-0.157,-0.641 -0.206,-1.307 -0.147,-1.964c0.052,-0.594 0.194,-1.179 0.42,-1.731c0.264,-0.648 0.644,-1.248 1.115,-1.766c0.501,-0.553 1.106,-1.01 1.774,-1.342c0.688,-0.342 1.44,-0.548 2.206,-0.606c0.579,-0.044 1.161,-0.003 1.727,0.125c0.311,0.07 0.613,0.168 0.91,0.281l0.042,0.018c0.111,0.061 0.198,0.147 0.245,0.266c0.087,0.221 0.002,0.481 -0.199,0.607c-0.053,0.033 -0.111,0.055 -0.171,0.067c-0.078,0.015 -0.153,0.008 -0.229,-0.009c-0.089,-0.03 -0.176,-0.065 -0.265,-0.096c-0.219,-0.074 -0.441,-0.136 -0.668,-0.183c-0.431,-0.09 -0.877,-0.113 -1.316,-0.079c-0.496,0.037 -0.986,0.149 -1.448,0.332c-0.861,0.339 -1.62,0.921 -2.174,1.662c-0.339,0.453 -0.6,0.963 -0.768,1.504c-0.169,0.542 -0.243,1.113 -0.221,1.681c0.023,0.601 0.154,1.197 0.389,1.752c0.258,0.611 0.64,1.168 1.114,1.632c0.475,0.463 1.042,0.832 1.66,1.075c0.562,0.222 1.164,0.339 1.768,0.347c0.566,0.007 1.133,-0.081 1.669,-0.263c0.649,-0.219 1.251,-0.575 1.758,-1.036c0.565,-0.514 1.011,-1.157 1.291,-1.868c0.183,-0.462 0.295,-0.952 0.332,-1.448c0.037,-0.479 0.003,-0.961 -0.103,-1.431c-0.06,-0.264 -0.144,-0.521 -0.24,-0.774l-0.015,-0.044c-0.028,-0.123 -0.022,-0.245 0.036,-0.359c0.027,-0.055 0.065,-0.105 0.111,-0.146c0.177,-0.159 0.45,-0.171 0.638,-0.026c0.063,0.048 0.108,0.108 0.146,0.177c0.035,0.081 0.033,0.081 0.065,0.164c0.092,0.258 0.174,0.52 0.234,0.788c0.111,0.491 0.158,0.995 0.139,1.498c-0.023,0.6 -0.136,1.195 -0.335,1.762c-0.257,0.73 -0.658,1.408 -1.172,1.987c-0.559,0.63 -1.251,1.141 -2.019,1.489c-0.659,0.298 -1.365,0.468 -2.085,0.518c-0.128,0.007 -0.256,0.011 -0.385,0.012Z"></path> </g> </g> </svg> </span>
@@ -541,7 +474,6 @@
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/ItemsModule.js"></script>
     <script src="~/Scripts/drag_and_drop.js"></script>
-    <script src="~/Scripts/ProfileModule.js"></script>
     <style>
         #dropZone.hover {
             border-color: #aaa;

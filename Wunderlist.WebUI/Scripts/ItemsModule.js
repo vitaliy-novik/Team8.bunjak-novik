@@ -1,4 +1,4 @@
-﻿var itemsModule = angular.module("itemsApp", []);
+﻿var itemsModule = angular.module("itemsApp", [])
 
 itemsModule.controller("addController", function ($scope, $http) {
 
@@ -7,6 +7,8 @@ itemsModule.controller("addController", function ($scope, $http) {
     $scope.lists = [];
 
     $scope.activeList = "";
+
+    $scope.profile = [];
 
     $scope.hideCreateList = false;
     $scope.showCreateList = function () {
@@ -25,8 +27,17 @@ itemsModule.controller("addController", function ($scope, $http) {
         });
         });
 
-        
-    });    
+        $http.get('../Profile/GetProfile').success(function (data) {
+            if (data) {
+                $scope.profile.photo = data.photo;
+                $scope.profile.userName = data.userName;
+            } else {
+                alert('Sorry, there is some error.');
+            }
+        });
+    });
+
+    //--------------------------------------------------------------------------------------------------
 
     $scope.newTask = {};
 
@@ -65,4 +76,6 @@ itemsModule.controller("addController", function ($scope, $http) {
     $scope.checkTask = function (task) {
         task.completed = !task.completed;
     };
+
+
 });

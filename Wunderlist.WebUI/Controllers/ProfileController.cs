@@ -31,28 +31,28 @@ namespace Wunderlist.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task UploadFiles(HttpPostedFileBase image)
+        public void UploadFiles(HttpPostedFileBase image)
         {
             string email = User.Identity.Name;
             var photo = ConvertToArrayBytes(image);
-            await _account.ChangePhoto(email, photo);
+            _account.ChangePhoto(email, photo);
             //var originalImage = new Bitmap(image.InputStream, false);
         }
         
-        public async Task ChangeName(string name)
+        public void ChangeName(string name)
         {
             string email = User.Identity.Name;
-            await _account.ChangeName(email, name);
+            _account.ChangeName(email, name);
         }
 
-        public async Task<JsonResult> GetProfile()
+        public JsonResult GetProfile()
         {
             string email = User.Identity.Name;
-            User user = await _account.GetByEmail(email);
+            User user =  _account.GetByEmail(email);
             var js = new
             {
-                UserName = user.UserName,
-                Photo = Convert.ToBase64String(user.Photo ?? _defaultPhoto)
+                userName = user.UserName,
+                photo = Convert.ToBase64String(user.Photo ?? _defaultPhoto)
             };
 
             return Json(js, JsonRequestBehavior.AllowGet);

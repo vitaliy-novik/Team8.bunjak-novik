@@ -75,6 +75,7 @@ itemsModule.controller("addController", function ($scope, $http) {
     
     $scope.checkTask = function (task) {
         task.completed = !task.completed;
+        document.getElementById('wl3-complete').play();
     };
 
 

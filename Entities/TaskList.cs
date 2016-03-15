@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class ToDoList : Entity
+    public class TaskList : Entity
     {
-        public ToDoList()
+        public TaskList()
         {
-            Items = new HashSet<ToDoItem>();
+            Items = new HashSet<TaskItem>();
         }
 
         public string Name { get; set; }
-        public virtual ICollection<ToDoItem> Items { get; set; }
+        public virtual ICollection<TaskItem> Items { get; set; }
         public User User { get; set; }
     }
 }

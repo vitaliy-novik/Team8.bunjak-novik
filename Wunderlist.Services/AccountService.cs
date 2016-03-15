@@ -20,22 +20,12 @@ namespace Wunderlist.Services
             return false;
         }
 
-        public void ChangeName(string id, string newName)
+        public void ChangeName(string email, string newName)
         {
-            User user = _uow.Users.GetFirst(us => us.Id == id);
+            User user = _uow.Users.GetFirst(us => us.Email == email);
             user.UserName = newName;
             _uow.Users.Update(user);
             _uow.Commit();
-        }
-
-        public void ChangePhoto(Guid id, byte[] photo)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Profile GetProfile(Guid id)
-        {
-            throw new NotImplementedException();
         }
 
         public void Registration(User user)
@@ -43,24 +33,24 @@ namespace Wunderlist.Services
             User u = _uow.Users.GetFirst(us => us.Email == user.Email);
 
             if (u != null)
-                throw new Exception("123!");
+                throw new Exception("the user exists");
                 
             _uow.Users.Create(user);
             _uow.Commit();
-
-            //ToDoList list = new ToDoList
-            //{
-            //    Name = "inbox",
-            //    User = user
-            //};
-
-            //_uow.ToDoLists.Create(list);
-            //_uow.Commit();
         }
 
         public User GetByEmail(string email)
         {
             return _uow.Users.GetFirst(us => us.Email == email);
+        }
+
+        public void ChangePhoto(string email, byte[] photo)
+        {
+            User user = GetByEmail(email);
+            user.Photo = photo;
+
+            _uow.Users.Update(user);
+            _uow.Commit();
         }
     }
 }

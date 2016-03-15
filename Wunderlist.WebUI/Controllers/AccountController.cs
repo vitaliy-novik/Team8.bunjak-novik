@@ -102,7 +102,6 @@ namespace Wunderlist.WebUI.Controllers
         }
         
         [HttpPost]
-        [Authorize]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             if (ModelState.IsValid)

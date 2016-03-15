@@ -52,8 +52,8 @@ namespace Stores
 
         public Task<User> FindByNameAsync(string email)
         {
-            User user = _accountService.GetByEmail(email);
-            return Task.FromResult<User>(user);
+            var user = _accountService.GetByEmail(email);
+            return Task.FromResult(user);
         }
 
         public Task<string> GetPasswordHashAsync(User user)

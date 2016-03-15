@@ -79,9 +79,9 @@
     <ul id="9f0ef6b0-42ce-41da-ae59-f919-60c7434d" class="context-menu hidden"></ul>
     <ul id="e81a4161-9359-4ba6-aff9-4f83-6b2fb434" class="context-menu hidden"></ul>
     <div class="main-interface">
-        <div id="modals" ng-show="hideCreateList">
-            <ul class="reminders dialog-wrapper"></ul>
-            <div class="dialog-wrapper">
+        <div id="modals">
+            
+            <div class="dialog-wrapper" ng-show="hideCreateList">
                 <div id="" class="dialog listOptions shown">
                     <div class="content">
                         <form ng-submit="addList()">
@@ -119,6 +119,217 @@
                     <ul class="content-people inviteAutocomplete hidden"></ul>
                 </div>
             </div>
+            <div id="settings" class="dialog-wrapper" style="display:none">
+                    <div class="dialog preferences shown">
+                        <div class="content">
+                            <div class="settings-content-inner-wrapper">
+                                <div class="settings-content-inner account">
+                                    <div class="settings">
+                                        <!-- Picture -->
+                                        <div class="separator">
+                                            <div class="cols">
+                                                <div class="col-32">
+                                                    <div class="avatar-frame">
+                                                        <div class="avatar large hover choose">
+                                                            <div class="container">
+                                                                <form id="form1" runat="server">
+                                                                    <div id="dropZone">
+                                                                        <span class="icon options" style="display: block;"></span>
+                                                                        <div id="photo">
+                                                                            <img src="https://a.wunderlist.com/api/v1/avatar?user_id=20661012&amp;size=128&amp;timestamp=1457726182">
+                                                                        </div>
+                                                                        <div class="drop-message">
+                                                                            <span><text rel="settings_account_drop_image">Перетащите фото сюда</text></span>
+                                                                        </div>
+                                                                        <div class="message error hidden">
+                                                                            <span><text rel="file_uploaded_failed">Не удалось добавить файл. Попробуйте еще раз.</text></span>
+                                                                        </div>
+                                                                        <div class="state loading spinner">
+                                                                            <span class="dark"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div class="avatar-upload">
+                                                            <div class="drop-zone"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-68">
+                                                    <div class="pro-status-wrapper">
+                                                        <div tabindex="0" class="pro-status pro-section-style tabStart">
+                                                            <h3>
+                                                                <text rel="settings_account_header_account_$" data="$settings_account_header_free">Учетная запись <token class="token_0" title="Бесплатно">Бесплатно</token></text>
+                                                            </h3>
+                                                            <p>
+                                                                <text rel="settings_account_pro_description">Вы можете назначать задачи коллегам и добавлять к ним файлы. Совместная работа еще никогда не была настолько простой!</text>
+                                                            </p>
+                                                            <a class="button big left green go-pro" data-path="preferences/account/pro" data-key-aria-label="settings_upgrade_to_pro_label" data-aria-label="$benefit_name" tabindex="0" aria-label="Перейти на Wunderlist Pro"> <strong><text rel="settings_upgrade_to_pro_label" data="$benefit_name">Перейти на <token class="token_0" title="Wunderlist Pro">Wunderlist Pro</token></text></strong> </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="separator basic-account-settings">
+                                            <!-- Full Name -->
+                                            <div class="cols">
+                                                <div class="col-32 text-right">
+                                                    <text rel="label_name">Имя</text>
+                                                </div>
+                                                <div class="col-68">
+                                                    <input type="text" id="edit-full-name" data-key-aria-label="label_name" data-key-placeholder="label_name" value="Buniak Maxim" initial-value="" tabindex="0" placeholder="Имя" aria-label="Имя">
+                                                </div>
+                                            </div> <!-- Email -->
+                                            <div class="cols">
+                                                <div class="col-32 text-right">
+                                                    <text rel="label_email">Электронная почта</text>
+                                                </div>
+                                                <div class="col-40">
+                                                    <input type="text" id="edit-email" data-key-aria-label="label_email" data-key-placeholder="label_email" value="bunjak.maxim@gmail.com" initial-value="" disabled="" tabindex="0" placeholder="Электронная почта" aria-label="Электронная почта">
+                                                </div>
+                                                <div class="col-28">
+                                                    <button id="change-email" class="full" data-key-aria-label="settings_account_change_email" tabindex="0" aria-label="Изменить адрес электронной почты"> <text rel="settings_account_change_email">Изменить адрес электронной почты</text> </button>
+                                                </div>
+                                            </div> <!-- Password for email confirm -->
+                                            <div class="cols password-confirm">
+                                                <div class="col-32 text-right">
+                                                    <text rel="label_password">Пароль</text>
+                                                </div>
+                                                <div class="col-40">
+                                                    <input type="password" id="edit-email-pw-confirm" data-key-aria-label="label_password" disabled="" tabindex="0" aria-label="Пароль">
+                                                </div>
+                                                <div class="col-28"></div>
+                                            </div> <!-- Change Email -->
+                                            <div class="cols change-email-buttons">
+                                                <div class="col-32 text-right"></div>
+                                                <div class="col-40">
+                                                    <div class="cols email-error error-message">
+                                                        <div class="col-100">
+                                                            <text rel="api_error_incorrect_password">Неверный пароль.</text>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cols">
+                                                        <div class="col-50">
+                                                            <button class="full" id="cancel-email" data-key-aria-label="button_cancel" tabindex="0" aria-label="Отмена"> <text rel="button_cancel">Отмена</text> </button>
+                                                        </div>
+                                                        <div class="col-50">
+                                                            <button class="full blue disabled" id="save-email" disabled="" data-key-aria-label="button_save" tabindex="0" aria-label="Сохранить"> <text rel="button_save">Сохранить</text> </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-28"></div>
+                                            </div>
+                                            <!-- Change Password -->
+                                            <div class="cols show-password-buttons">
+                                                <div class="col-32 text-right">
+                                                    <text rel="label_password">Пароль</text>
+                                                </div>
+                                                <div class="col-40">
+                                                    <input id="old-password" type="password" tabindex="0" placeholder="Текущий пароль" aria-label="Текущий пароль">
+                                                </div>
+                                                <div class="col-28"></div>
+                                            </div>
+                                            <div class="cols change-password-buttons">
+                                                <div class="col-32"></div>
+                                                <div class="col-40">
+                                                    <div class="cols">
+                                                        <div class="col-100">
+                                                            <input id="new-password" type="password" tabindex="0" placeholder="Новый пароль" aria-label="Новый пароль">
+                                                        </div>
+                                                    </div>
+                                                    <div class="cols">
+                                                        <div class="col-100">
+                                                            <input id="confirm-password" type="password" tabindex="0" placeholder="Повторите новый пароль" aria-label="Повторите новый пароль">
+                                                        </div>
+                                                    </div>
+                                                    <div class="cols change-password-error error-message">
+                                                        <div id="password-error" class="col-100" style="display:none">
+                                                            <text rel="settings_account_change_password_error">Пароли должны совпадать.</text>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cols">
+                                                        <div class="col-50">
+                                                            <button class="full" id="cancel-password" tabindex="0" aria-label="Отмена"> <text rel="button_cancel">Отмена</text> </button>
+                                                        </div>
+                                                        <div class="col-50">
+                                                            <button class="full blue" id="save-password" onclick="iscorrect(); return false;" tabindex="0" aria-label="Сохранить"> <text rel="button_save">Изменить</text> </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-28"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Delete Account -->
+                                        <div id="delete-account" style="display:none" class="separator noline delete-form" tabindex="0">
+                                            <div class="cols delete-account-heading">
+                                                <div class="col-32"></div>
+                                                <div class="col-68">
+                                                    <h3>
+                                                        <text rel="settings_account_delete_account_confirm">Вы действительно хотите удалить учетную запись?</text>
+                                                    </h3>
+                                                    <p>
+                                                        <text rel="settings_account_delete_account_confirm_text">При удалении вы потеряете все свои списки и задачи и не сможете их восстановить.</text>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="cols delete-account-password">
+                                                    <div class="col-32 text-right">
+                                                        <text rel="settings_account_current_password">Текущий пароль</text>
+                                                    </div>
+                                                    <div class="col-68">
+                                                        <input type="password" class="delete-password" data-key-aria-label="settings_account_current_password" tabindex="0" aria-label="Текущий пароль">
+                                                    </div>
+                                                </div>
+                                                <div class="cols delete-account-confirm">
+                                                    <div class="col-32 text-right">
+                                                        <text rel="settings_account_delete_confirmation">Введите «Подтверждаю»</text>
+                                                    </div>
+                                                    <div class="col-68">
+                                                        <input type="text" class="delete-confirm" data-key-aria-label="settings_account_delete_confirmation" tabindex="0" aria-label="Введите «Подтверждаю»">
+                                                    </div>
+                                                </div>
+                                                <div class="cols delete-password-error error-message">
+                                                    <div class="col-100 text-right">
+                                                        <text rel="api_error_incorrect_password">Неверный пароль.</text>
+                                                    </div>
+                                                </div>
+                                                <div class="cols text-right">
+                                                    <div class="col-32"></div>
+                                                    <div class="col-34">
+                                                        <button class="full" id="cancel-delete-account" onclick="openbox('delete-account'); return false" tabindex="0" aria-label="Отмена"> <text rel="button_cancel">Отмена</text> </button>
+                                                    </div>
+                                                    <div class="col-34">
+                                                        <button class="full red disabled" id="delete-account" disabled="" data-key-aria-label="button_delete" tabindex="0" aria-label="Удалить"><span></span> <text rel="button_delete">Удалить</text> </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="delete-account" class="separator show-delete-wrapper" style="display:block">
+                                            <div class="cols">
+                                                <div class="col-32"></div>
+                                                <div class="col-40">
+                                                    <button class="red show-delete tabEnd" data-key-aria-label="settings_account_delete_account" tabindex="0" aria-label="Удалить учетную запись" onclick="openbox('delete-account'); return false"> <text rel="settings_account_delete_account">Удалить учетную запись</text> </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-footer">
+                            <div class="cols">
+                                <div class="col-40"></div>
+                                <div class="col-40"></div>
+                                <div class="col-20">
+                                    <button class="full blue close" onclick="openbox('settings'); return false"><text rel="button_done">Готово</text></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
         </div>
         <div id="lists" role="navigation">
             <div tabindex="0" class="lists-inner">
@@ -130,7 +341,7 @@
                     <span class="search-icon-wrapper"> <a class="search-icon" role="button" tabindex="0" data-key-aria-label="aria_search" data-key-title="aria_search" title="Поиск" aria-label="Поиск"><svg class="search rtl-flip" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <g stroke="none" stroke-width="1" fill-rule="evenodd"> <g> <path d="M8.5025,15 C4.9225,15 2.0025,12.08 2.0025,8.5 C2.0025,4.92 4.9225,2 8.5025,2 C12.0825,2 15.0025,4.92 15.0025,8.5 C15.0025,12.08 12.0825,15 8.5025,15 L8.5025,15 Z M8.5025,3 C5.4625,3 3.0025,5.46 3.0025,8.5 C3.0025,11.54 5.4625,14 8.5025,14 C11.5425,14 14.0025,11.54 14.0025,8.5 C14.0025,5.46 11.5425,3 8.5025,3 L8.5025,3 Z M17.5025,18 C17.3825,18 17.2425,17.96 17.1425,17.86 L13.6425,14.36 C13.4625,14.16 13.4625,13.84 13.6425,13.64 C13.8425,13.46 14.1625,13.46 14.3625,13.64 L17.8625,17.14 C18.0425,17.34 18.0425,17.66 17.8625,17.86 C17.7625,17.96 17.6225,18 17.5025,18 L17.5025,18 Z" id="z"></path> </g> </g> </svg></a> <a class="search-stop-icon hidden" role="button" tabindex="0" data-key-aria-label="aria_exit_search" data-key-title="aria_exit_search" title="Выйти из поиска" aria-label="Выйти из поиска"><svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g> <path d="M9.991,10.832c-1.716,1.671 -3.445,3.329 -5.137,5.022c-0.058,0.052 -0.12,0.095 -0.195,0.12c-0.039,0.013 -0.05,0.014 -0.09,0.021c-0.046,0.004 -0.046,0.004 -0.092,0.004c-0.078,-0.007 -0.151,-0.024 -0.22,-0.062c-0.193,-0.108 -0.294,-0.336 -0.244,-0.551c0.018,-0.078 0.055,-0.143 0.102,-0.205c1.627,-1.785 3.329,-3.499 5.053,-5.19c-1.671,-1.716 -3.329,-3.445 -5.022,-5.137c-0.052,-0.058 -0.095,-0.12 -0.12,-0.195c-0.081,-0.242 0.039,-0.513 0.272,-0.616c0.056,-0.025 0.117,-0.04 0.179,-0.042c0.128,-0.006 0.242,0.038 0.342,0.114c1.785,1.627 3.499,3.329 5.19,5.053c1.716,-1.671 3.445,-3.329 5.137,-5.022c0.058,-0.052 0.12,-0.095 0.195,-0.12c0.059,-0.02 0.121,-0.028 0.182,-0.025c0.255,0.011 0.465,0.221 0.476,0.476c0.006,0.128 -0.038,0.242 -0.114,0.342c-1.627,1.785 -3.329,3.499 -5.053,5.19c1.671,1.716 3.329,3.445 5.022,5.137c0.052,0.058 0.095,0.12 0.12,0.195c0.07,0.21 -0.009,0.447 -0.191,0.571c-0.066,0.045 -0.137,0.069 -0.214,0.083c-0.046,0.004 -0.046,0.004 -0.092,0.004c-0.078,-0.007 -0.151,-0.024 -0.22,-0.062c-0.036,-0.02 -0.044,-0.028 -0.076,-0.052c-1.785,-1.627 -3.499,-3.329 -5.19,-5.053Z"></path> </g> </svg> </a> </span>
                 </div>
                 <div id="user-toolbar">
-                    <a class="user" data-path="me" role="button" tabindex="0" aria-label="Buniak Maxim Меню пользователя." aria-expanded="false" aria-haspopup="true">
+                    <a class="user" data-path="me" role="button" tabindex="0" aria-label="Buniak Maxim Меню пользователя." aria-expanded="false" aria-haspopup="true" onclick="openbox('settings'); return false">
                         <span class="user-avatar">
                             <div class="avatar medium" title="Buniak Maxim">
                                 <img src="https://a.wunderlist.com/api/v1/avatar?user_id=20661012&amp;size=32&amp;timestamp=1456748947">
@@ -327,6 +538,30 @@
         </div>
     </div>
     <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/ItemsModule.js"></script>
+    <script src="~/Scripts/drag_and_drop.js"></script>
+    <script src="~/Scripts/ProfileModule.js"></script>
+    <style>
+        #dropZone.hover {
+            border-color: #aaa;
+            background-color: #ddd;
+        }
+
+        #dropZone.error {
+            border-color: #f00;
+            background-color: #faa;
+        }
+    </style>
+    <script type="text/javascript">
+        function openbox(id) {
+            var display = document.getElementById(id).style.display;
+            if (display == 'none') {
+                document.getElementById(id).style.display = 'block';
+            } else {
+                document.getElementById(id).style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>

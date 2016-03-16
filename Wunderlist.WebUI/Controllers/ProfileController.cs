@@ -38,8 +38,9 @@ namespace Wunderlist.WebUI.Controllers
             _account.ChangePhoto(email, photo);
             //var originalImage = new Bitmap(image.InputStream, false);
         }
-        
-        public void ChangeName(string name)
+    
+        [HttpPost]
+        public void EditName(string name)
         {
             string email = User.Identity.Name;
             _account.ChangeName(email, name);
@@ -52,7 +53,8 @@ namespace Wunderlist.WebUI.Controllers
             var js = new
             {
                 userName = user.UserName,
-                photo = Convert.ToBase64String(user.Photo ?? _defaultPhoto)
+                photo = Convert.ToBase64String(user.Photo ?? _defaultPhoto),
+                email = user.Email
             };
 
             return Json(js, JsonRequestBehavior.AllowGet);

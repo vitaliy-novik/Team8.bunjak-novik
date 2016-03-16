@@ -20,7 +20,7 @@ namespace Wunderlist.WebUI.Controllers
         private static byte[] _defaultPhoto;
         static ProfileController()
         {
-            string path = @"C:\Users\Vitaliy\Source\Repos\Team8.bunjak-novik\Wunderlist.WebUI\Content\defaultPhoto.png";
+            string path = @"C:\Users\bunia\Source\Repos\Team8.bunjak-novik\Wunderlist.WebUI\Content\defaultPhoto.png";
             _defaultPhoto = System.IO.File.ReadAllBytes(path);
         }
 

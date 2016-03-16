@@ -65,17 +65,15 @@
                                                 <div class="avatar-frame">
                                                     <div class="avatar large hover choose">
                                                         <div class="container">
+
                                                             <form id="form1" runat="server">
                                                                 <div id="dropZone">
-                                                                    <span class="icon options" style="display: block;"></span>
+                                                                    <span class="icon options"></span>
                                                                     <div id="photo">
                                                                         <img ng-src="data:image/JPEG;base64,{{profile.photo}}" />
                                                                     </div>
                                                                     <div class="drop-message">
                                                                         <span><text rel="settings_account_drop_image">Перетащите фото сюда</text></span>
-                                                                    </div>
-                                                                    <div class="message error hidden">
-                                                                        <span><text rel="file_uploaded_failed">Не удалось добавить файл. Попробуйте еще раз.</text></span>
                                                                     </div>
                                                                     <div class="state loading spinner">
                                                                         <span class="dark"></span>
@@ -105,93 +103,61 @@
                                         </div>
                                     </div>
                                     <div class="separator basic-account-settings">
-                                        <!-- Full Name -->
-                                        <div class="cols">
-                                            <div class="col-32 text-right">
-                                                <text rel="label_name">Имя</text>
-                                            </div>
-                                            <div class="col-68">
-                                                <input type="text" id="edit-full-name" data-key-aria-label="label_name" data-key-placeholder="label_name" value="{{profile.userName}}" initial-value="" tabindex="0" placeholder="Имя" aria-label="Имя">
-                                            </div>
-                                        </div> <!-- Email -->
-                                        <div class="cols">
-                                            <div class="col-32 text-right">
-                                                <text rel="label_email">Электронная почта</text>
-                                            </div>
-                                            <div class="col-40">
-                                                <input type="text" id="edit-email" data-key-aria-label="label_email" data-key-placeholder="label_email" value="bunjak.maxim@gmail.com" initial-value="" disabled="" tabindex="0" placeholder="Электронная почта" aria-label="Электронная почта">
-                                            </div>
-                                            <div class="col-28">
-                                                <button id="change-email" class="full" data-key-aria-label="settings_account_change_email" tabindex="0" aria-label="Изменить адрес электронной почты"> <text rel="settings_account_change_email">Изменить адрес электронной почты</text> </button>
-                                            </div>
-                                        </div> <!-- Password for email confirm -->
-                                        <div class="cols password-confirm">
-                                            <div class="col-32 text-right">
-                                                <text rel="label_password">Пароль</text>
-                                            </div>
-                                            <div class="col-40">
-                                                <input type="password" id="edit-email-pw-confirm" data-key-aria-label="label_password" disabled="" tabindex="0" aria-label="Пароль">
-                                            </div>
-                                            <div class="col-28"></div>
-                                        </div> <!-- Change Email -->
-                                        <div class="cols change-email-buttons">
-                                            <div class="col-32 text-right"></div>
-                                            <div class="col-40">
-                                                <div class="cols email-error error-message">
-                                                    <div class="col-100">
-                                                        <text rel="api_error_incorrect_password">Неверный пароль.</text>
-                                                    </div>
+                                        <!-- Full Name --><br />
+                                        <form ng-submit="editUserName()">
+                                            <div class="cols">
+                                                <div class="col-32 text-right">
+                                                    <text rel="label_name">Имя</text>
                                                 </div>
-                                                <div class="cols">
-                                                    <div class="col-50">
-                                                        <button class="full" id="cancel-email" data-key-aria-label="button_cancel" tabindex="0" aria-label="Отмена"> <text rel="button_cancel">Отмена</text> </button>
-                                                    </div>
-                                                    <div class="col-50">
-                                                        <button class="full blue disabled" id="save-email" disabled="" data-key-aria-label="button_save" tabindex="0" aria-label="Сохранить"> <text rel="button_save">Сохранить</text> </button>
-                                                    </div>
+                                                <div class="col-40">
+                                                    <input ng-model="newUserName.name" type="text" id="edit-full-name" value="{{profile.userName}}" data-key-aria-label="label_name" data-key-placeholder="label_name" initial-value="" tabindex="0" placeholder="Имя" aria-label="Имя">
+                                                </div>
+                                                <div class="col-28">
+                                                    <button type="submit" id="change-name" class="full" data-key-aria-label="settings_account_change_email" tabindex="0" aria-label="Изменить имя"> <text rel="settings_account_change_email">Изменить имя</text> </button>
                                                 </div>
                                             </div>
-                                            <div class="col-28"></div>
-                                        </div>
+                                        </form>
+
                                         <!-- Change Password -->
-                                        <div class="cols show-password-buttons">
-                                            <div class="col-32 text-right">
-                                                <text rel="label_password">Пароль</text>
+                                        <form ng-submit="editPassword()">
+                                            <div class="cols show-password-buttons">
+                                                <div class="col-32 text-right">
+                                                    <text rel="label_password">Пароль</text>
+                                                </div>
+                                                <div class="col-40">
+                                                    <input ng-model="password.oldPassword" id="old-password" type="password" tabindex="0" placeholder="Текущий пароль" aria-label="Текущий пароль">
+                                                </div>
+                                                <div class="col-28"></div>
                                             </div>
-                                            <div class="col-40">
-                                                <input id="old-password" type="password" tabindex="0" placeholder="Текущий пароль" aria-label="Текущий пароль">
+                                            <div class="cols change-password-buttons">
+                                                <div class="col-32"></div>
+                                                <div class="col-40">
+                                                    <div class="cols">
+                                                        <div class="col-100">
+                                                            <input ng-model="password.newPassword" id="new-password" type="password" tabindex="0" placeholder="Новый пароль" aria-label="Новый пароль">
+                                                        </div>
+                                                    </div>
+                                                    <div class="cols">
+                                                        <div class="col-100">
+                                                            <input ng-model="password.confirmPassword" id="confirm-password" type="password" tabindex="0" placeholder="Повторите новый пароль" aria-label="Повторите новый пароль">
+                                                        </div>
+                                                    </div>
+                                                    <div class="cols change-password-error error-message">
+                                                        <div id="password-error" class="col-100" style="display:none">
+                                                            <text rel="settings_account_change_password_error">Пароли должны совпадать.</text>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cols">
+                                                        <div class="col-50">
+                                                        </div>
+                                                        <div class="col-50">
+                                                            <button type="submit" class="full blue" id="save-password" onclick="iscorrect(); return false;" tabindex="0" aria-label="Сохранить"> <text rel="button_save">Изменить</text> </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="errorPassword" class="col-28"></div>
                                             </div>
-                                            <div class="col-28"></div>
-                                        </div>
-                                        <div class="cols change-password-buttons">
-                                            <div class="col-32"></div>
-                                            <div class="col-40">
-                                                <div class="cols">
-                                                    <div class="col-100">
-                                                        <input id="new-password" type="password" tabindex="0" placeholder="Новый пароль" aria-label="Новый пароль">
-                                                    </div>
-                                                </div>
-                                                <div class="cols">
-                                                    <div class="col-100">
-                                                        <input id="confirm-password" type="password" tabindex="0" placeholder="Повторите новый пароль" aria-label="Повторите новый пароль">
-                                                    </div>
-                                                </div>
-                                                <div class="cols change-password-error error-message">
-                                                    <div id="password-error" class="col-100" style="display:none">
-                                                        <text rel="settings_account_change_password_error">Пароли должны совпадать.</text>
-                                                    </div>
-                                                </div>
-                                                <div class="cols">
-                                                    <div class="col-50">
-                                                        <button class="full" id="cancel-password" tabindex="0" aria-label="Отмена"> <text rel="button_cancel">Отмена</text> </button>
-                                                    </div>
-                                                    <div class="col-50">
-                                                        <button class="full blue" id="save-password" onclick="iscorrect(); return false;" tabindex="0" aria-label="Сохранить"> <text rel="button_save">Изменить</text> </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-28"></div>
-                                        </div>
+                                        </form>
                                     </div>
                                     <!-- Delete Account -->
                                     <div id="delete-account" style="display:none" class="separator noline delete-form" tabindex="0">

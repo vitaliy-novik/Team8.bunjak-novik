@@ -35,7 +35,8 @@ namespace Wunderlist.Services
             if (u != null)
                 throw new Exception("the user exists");
 
-            Update(user);
+            _uow.Users.Create(user);
+            _uow.Commit();
         }
 
         public User GetByEmail(string email)

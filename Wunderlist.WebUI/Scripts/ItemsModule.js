@@ -10,21 +10,22 @@ itemsModule.controller("addController", function ($scope, $http) {
 
     $scope.profile = [];
 
-    $scope.hideCreateList = false;
-    $scope.showCreateList = function () {
-        $scope.hideCreateList = !$scope.hideCreateList;
-    }
-
     angular.element(document).ready(function () {
         $http.get('../api/ToDoList').success(function (data) {
             console.log(data);
             $scope.lists = data;
-            $scope.activeList = $scope.lists[0].name;
+            $scope.activeList = $scope.lists[0].id;
+            
         }).then(function () {
             $http.get('../api/ToDoList/' + $scope.activeList).success(function (data) {
-            console.log(data);
-            $scope.tasks = data;            
-        });
+                console.log(data);
+                $scope.tasks = data;            
+            }).then(function () {
+                var e = document.getElementById($scope.activeList).parentElement;
+                console.log(e);
+                e.classList.add("active");
+            });
+            
         });
 
         $http.get('../Profile/GetProfile').success(function (data) {
@@ -44,6 +45,21 @@ itemsModule.controller("addController", function ($scope, $http) {
     $scope.newList = {};
 
     $scope.hideCompleted = true;
+    
+    $scope.selectList = function (param) {
+        console.log(param);
+        if ($scope.activeList != param.id) {
+            var old = document.getElementById($scope.activeList).parentElement;
+            console.log(old);
+            old.classList.remove("active");
+            console.log(old);
+            $scope.activeList = param.id;
+            document.getElementById(param.id).parentElement.classList.add("active");
+            $http.get('../api/ToDoList/' + $scope.activeList).success(function (data) {
+                $scope.tasks = data;
+            });
+        }        
+    }
 
     $scope.show = function () {
         $scope.hideCompleted = !$scope.hideCompleted;
@@ -66,7 +82,6 @@ itemsModule.controller("addController", function ($scope, $http) {
     $scope.addList = function () {
         if (this.newList.name) {
             $http.post('../api/ToDoList', $scope.newList).success(function () {
-                $scope.hideCreateList = false;
                 $scope.lists.push($scope.newList);
                 $scope.newList = null;
             });

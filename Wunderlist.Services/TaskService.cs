@@ -12,10 +12,10 @@ namespace Wunderlist.Services
     {
         public TaskService(IUnitOfWork uow) : base(uow) { }
 
-        public void AddTask(string email, string name, DateTime date, string listName)
+        public void AddTask(string email, string name, DateTime date, string listId)
         {
             var list = _uow.Users.GetFirst(u => u.Email == email)
-                .ToDoLists.FirstOrDefault(l => l.Name == listName);
+                .ToDoLists.FirstOrDefault(l => l.Id == listId);
             var task = new ToDoItem
             {
                 Name = name,
@@ -31,10 +31,10 @@ namespace Wunderlist.Services
             return _uow.Users.GetFirst(us => us.Email == email).ToDoLists;
         }
 
-        public ToDoList GetList(string email, string listName)
+        public ToDoList GetList(string email, string id)
         {
             return _uow.Users.GetFirst(u => u.Email == email).
-                ToDoLists.FirstOrDefault(l => l.Name == listName);
+                ToDoLists.FirstOrDefault(l => l.Id == id);
         }
 
         public void AddList(string name, string email)

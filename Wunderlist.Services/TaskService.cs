@@ -31,6 +31,13 @@ namespace Wunderlist.Services
             return _uow.Users.GetFirst(us => us.Email == email).ToDoLists;
         }
 
+        public void UpdateTask(string list, ToDoItem value)
+        {
+            value.List = _uow.ToDoLists.GetFirst(l => l.Id == list);
+            _uow.ToDoItems.Update(value);
+            _uow.Commit();
+        }
+
         public ToDoList GetList(string email, string id)
         {
             return _uow.Users.GetFirst(u => u.Email == email).

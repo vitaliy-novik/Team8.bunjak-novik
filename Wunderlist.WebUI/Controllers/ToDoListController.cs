@@ -44,7 +44,8 @@ namespace Wunderlist.WebUI.Controllers
                 id = i.Id,
                 name = i.Name,
                 completed = i.IsCompleted,
-                date = i.Date
+                date = i.Date,
+                List = r.Id
             }
             ));
         }

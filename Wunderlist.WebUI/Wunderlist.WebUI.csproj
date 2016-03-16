@@ -247,6 +247,7 @@
     <Compile Include="Models\AccountView\RegisterViewModel.cs" />
     <Compile Include="Models\ListViewModels\AddListViewModel.cs" />
     <Compile Include="Models\TaskViewModels\AddTaskViewModel.cs" />
+    <Compile Include="Models\TaskViewModels\UpdateTaskViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

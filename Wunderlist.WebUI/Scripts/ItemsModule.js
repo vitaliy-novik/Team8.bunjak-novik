@@ -16,6 +16,7 @@ itemsModule.controller("addController", function ($scope, $http) {
             $scope.lists = data;
             $scope.activeList = $scope.lists[0].id;
             
+            
         }).then(function () {
             $http.get('../api/ToDoList/' + $scope.activeList).success(function (data) {
                 console.log(data);
@@ -91,7 +92,12 @@ itemsModule.controller("addController", function ($scope, $http) {
     
     $scope.checkTask = function (task) {
         task.completed = !task.completed;
-        document.getElementById('wl3-complete').play();
+        task.List = $scope.activeList;
+        console.log(task);
+        $http.put('../api/ToDoItems/' + task.id, task).success(function () {            
+            document.getElementById('wl3-complete').play();
+        });
+        
     };
 
     $scope.newUserName = {};

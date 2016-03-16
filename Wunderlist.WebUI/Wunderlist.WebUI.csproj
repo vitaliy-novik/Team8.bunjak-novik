@@ -295,6 +295,7 @@
     <Content Include="Content\wl3-complete.ogg" />
     <Content Include="Content\wl3-notification.ogg" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\drag_and_drop.js" />
     <Content Include="Scripts\ItemsModule.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

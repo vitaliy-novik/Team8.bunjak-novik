@@ -31,6 +31,7 @@ itemsModule.controller("addController", function ($scope, $http) {
             if (data) {
                 $scope.profile.photo = data.photo;
                 $scope.profile.userName = data.userName;
+                $scope.profile.email = data.email;
             } else {
                 alert('Sorry, there is some error.');
             }
@@ -78,5 +79,25 @@ itemsModule.controller("addController", function ($scope, $http) {
         document.getElementById('wl3-complete').play();
     };
 
+    $scope.newUserName = {};
+    $scope.editUserName = function () {
+        if (this.newUserName.name) {
+            $http.post('../Profile/EditName',
+                $scope.newUserName).success(function () {
+                $scope.profile.userName = $scope.newUserName.name;
+            });
+            console.log(typeof (this.newUserName.name));
+        }
+    };
 
+    $scope.password = {}
+    $scope.editPassword = function () {
+        if (this.password.confirmPassword == this.password.newPassword) {
+            $http.post('../Account/ChangePassword',
+                $scope.password).success(function () {
+                    document.getElementById('errorPassword').textContent = 'Парорь изменён';
+                });
+        }
+        else document.getElementById('errorPassword').textContent='Пароли должны совпадать';
+    };
 });

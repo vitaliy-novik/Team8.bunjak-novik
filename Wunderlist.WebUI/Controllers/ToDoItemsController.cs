@@ -40,5 +40,10 @@ namespace Wunderlist.WebUI.Controllers
             };
             service.UpdateTask(value.List, item);
         }
+
+        public void Delete(string id)
+        {
+            service.DeleteTask(id);
+        }
     }
 }

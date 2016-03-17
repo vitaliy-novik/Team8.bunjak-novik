@@ -44,6 +44,13 @@ namespace Wunderlist.Services
                 ToDoLists.FirstOrDefault(l => l.Id == id);
         }
 
+        public void DeleteTask(string id)
+        {
+            var item = _uow.ToDoItems.GetFirst(i => i.Id == id);
+            _uow.ToDoItems.Delete(item);
+            _uow.Commit();
+        }
+
         public void AddList(string name, string email)
         {
             var user = _uow.Users.GetFirst(l => l.Email == email);

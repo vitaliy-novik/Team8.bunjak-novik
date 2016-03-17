@@ -7,6 +7,7 @@ itemsModule.controller("addController", function ($scope, $http) {
     $scope.lists = [];
 
     $scope.activeList = "";
+    $scope.activeTask = {};
 
     $scope.profile = [];
 
@@ -61,6 +62,28 @@ itemsModule.controller("addController", function ($scope, $http) {
                 $scope.tasks = data;
             });
         }        
+    }
+
+    $scope.editTask = function (task) {
+        console.log(task);
+        $scope.activeTask = task;
+        $scope.openbox('detail');
+    }
+
+    $scope.deleteTask = function () {
+        $http.delete('../api/ToDoItems/' + $scope.activeTask.id).success(function () {
+            $http.get('../api/ToDoList/' + $scope.activeList).success(function (data) {
+                $scope.tasks = data;
+                $scope.openbox('detail');
+            });
+        });
+    }
+
+    $scope.editNote = function () {
+        console.dir('aaaaaa');
+        $http.put('../api/ToDoItems/' + $scope.activeTask.id, $scope.activeTask).success(function () {
+            $scope.openbox('detail');
+        });
     }
 
     $scope.show = function () {
@@ -121,4 +144,13 @@ itemsModule.controller("addController", function ($scope, $http) {
         }
         else document.getElementById('errorPassword').textContent='Пароли должны совпадать';
     };
+
+    $scope.openbox = function (id) {
+        var display = document.getElementById(id).style.display;
+        if (display == 'none') {
+            document.getElementById(id).style.display = 'block';
+        } else {
+            document.getElementById(id).style.display = 'none';
+        }
+    }
 });

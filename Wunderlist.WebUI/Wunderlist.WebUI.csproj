@@ -247,11 +247,13 @@
     <Compile Include="Models\AccountView\RegisterViewModel.cs" />
     <Compile Include="Models\ListViewModels\AddListViewModel.cs" />
     <Compile Include="Models\TaskViewModels\AddTaskViewModel.cs" />
+    <Compile Include="Models\TaskViewModels\UpdateTaskViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\06.jpg" />
     <Content Include="Content\07.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -291,7 +293,10 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\wl3-complete.ogg" />
+    <Content Include="Content\wl3-notification.ogg" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\drag_and_drop.js" />
     <Content Include="Scripts\ItemsModule.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -310,7 +315,6 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />

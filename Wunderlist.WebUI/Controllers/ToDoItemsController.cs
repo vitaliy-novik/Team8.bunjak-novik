@@ -27,5 +27,23 @@ namespace Wunderlist.WebUI.Controllers
             string userName = User.Identity.Name;
             service.AddTask(userName, value.Name, DateTime.Now, value.List);
         }
+
+        public void Put(string id, [FromBody]UpdateTaskViewModel value)
+        {
+            ToDoItem item = new ToDoItem
+            {
+                Id = id,
+                IsCompleted = value.Completed,
+                Name = value.Name,
+                Note = value.Note,
+                Date = value.Date
+            };
+            service.UpdateTask(value.List, item);
+        }
+
+        public void Delete(string id)
+        {
+            service.DeleteTask(id);
+        }
     }
 }

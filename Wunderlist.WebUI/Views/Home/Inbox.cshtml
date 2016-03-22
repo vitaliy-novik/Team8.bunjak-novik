@@ -14,7 +14,7 @@
 
     <div class="main-interface">
         <div id="modals">
-            <div class="dialog-wrapper" ng-show="hideCreateList">
+            <div id="addList" class="dialog-wrapper" style="display:none">
                 <div id="" class="dialog listOptions shown">
                     <div class="content">
                         <form ng-submit="addList()">
@@ -24,17 +24,7 @@
                                 </h3>
                                 <div class="separator noline">
                                     <input ng-model="newList.name" class="big listOptions-title" type="text" data-key-placeholder="placeholder_list_name" data-key-aria-label="placeholder_list_name" maxlength="255" value="" placeholder="Название списка" aria-label="Название списка">
-                                </div>
-                                <div class="separator noline">
-                                    <ul class="content-tabs">
-                                        <li>
-                                            <a tabindex="0" role="button" rel="members" class="active"><text rel="sharing_list_members">Участники списка</text></a>
-                                        </li>
-                                        <li>
-                                            <a tabindex="0" role="button" rel="options"><text rel="sharing_list_options">Параметры списка</text></a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                </div>                                
                             </div>
                             <div class="content-footer">
                                 <div class="cols">
@@ -43,7 +33,7 @@
                                         <!--<button class="cancel full close"><text rel="button_cancel">Отмена</text></button>-->
                                     </div>
                                     <div class="col-30">
-                                        <input type="submit" class="submit full blue" aria-disabled="true" tabindex="-1">
+                                        <button onclick="openbox('addList'); return false" type="submit" class="submit full blue" aria-disabled="true" tabindex="-1">Добавить</button>
                                     </div>
                                 </div>
                             </div>
@@ -53,113 +43,79 @@
                 </div>
             </div>
             <div id="settings" class="dialog-wrapper" style="display:none">
-                    <div class="dialog preferences shown">
-                        <div class="content">
-                            <div class="settings-content-inner-wrapper">
-                                <div class="settings-content-inner account">
-                                    <div class="settings">
-                                        <!-- Picture -->
-                                        <div class="separator">
-                                            <div class="cols">
-                                                <div class="col-32">
-                                                    <div class="avatar-frame">
-                                                        <div class="avatar large hover choose">
-                                                            <div class="container">
-                                                                <form id="form1" runat="server">
-                                                                    <div id="dropZone">
-                                                                        <span class="icon options" style="display: block;"></span>
-                                                                        <div id="photo">
-                                                                            <img ng-src="data:image/JPEG;base64,{{profile.photo}}" />
-                                                                        </div>
-                                                                        <div class="drop-message">
-                                                                            <span><text rel="settings_account_drop_image">Перетащите фото сюда</text></span>
-                                                                        </div>
-                                                                        <div class="message error hidden">
-                                                                            <span><text rel="file_uploaded_failed">Не удалось добавить файл. Попробуйте еще раз.</text></span>
-                                                                        </div>
-                                                                        <div class="state loading spinner">
-                                                                            <span class="dark"></span>
-                                                                        </div>
+                <div class="dialog preferences shown">
+                    <div class="content">
+                        <div class="settings-content-inner-wrapper">
+                            <div class="settings-content-inner account">
+                                <div class="settings">
+                                    <!-- Picture -->
+                                    <div class="separator">
+                                        <div class="cols">
+                                            <div class="col-32">
+                                                <div class="avatar-frame">
+                                                    <div class="avatar large hover choose">
+                                                        <div class="container">
+
+                                                            <form id="form1" runat="server">
+                                                                <div id="dropZone">
+                                                                    <span class="icon options"></span>
+                                                                    <div id="photo">
+                                                                        <img ng-src="data:image/JPEG;base64,{{profile.photo}}" />
                                                                     </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                        <div class="avatar-upload">
-                                                            <div class="drop-zone"></div>
+                                                                    <div class="drop-message">
+                                                                        <span><text rel="settings_account_drop_image">Перетащите фото сюда</text></span>
+                                                                    </div>
+                                                                    <div class="state loading spinner">
+                                                                        <span class="dark"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                     </div>
+                                                    <div class="avatar-upload">
+                                                        <div class="drop-zone"></div>
+                                                    </div>
                                                 </div>
-                                                <div class="col-68">
-                                                    <div class="pro-status-wrapper">
-                                                        <div tabindex="0" class="pro-status pro-section-style tabStart">
-                                                            <h3>
-                                                                <text rel="settings_account_header_account_$" data="$settings_account_header_free">Учетная запись <token class="token_0" title="Бесплатно">Бесплатно</token></text>
-                                                            </h3>
-                                                            <p>
-                                                                <text rel="settings_account_pro_description">Вы можете назначать задачи коллегам и добавлять к ним файлы. Совместная работа еще никогда не была настолько простой!</text>
-                                                            </p>
-                                                            <a class="button big left green go-pro" data-path="preferences/account/pro" data-key-aria-label="settings_upgrade_to_pro_label" data-aria-label="$benefit_name" tabindex="0" aria-label="Перейти на Wunderlist Pro"> <strong><text rel="settings_upgrade_to_pro_label" data="$benefit_name">Перейти на <token class="token_0" title="Wunderlist Pro">Wunderlist Pro</token></text></strong> </a>
-                                                        </div>
+                                            </div>
+                                            <div class="col-68">
+                                                <div class="pro-status-wrapper">
+                                                    <div tabindex="0" class="pro-status pro-section-style tabStart">
+                                                        <h3>
+                                                            <text rel="settings_account_header_account_$" data="$settings_account_header_free">Учетная запись <token class="token_0" title="Бесплатно">Бесплатно</token></text>
+                                                        </h3>
+                                                        <p>
+                                                            <text rel="settings_account_pro_description">Вы можете назначать задачи коллегам и добавлять к ним файлы. Совместная работа еще никогда не была настолько простой!</text>
+                                                        </p>
+                                                        <a class="button big left green go-pro" data-path="preferences/account/pro" data-key-aria-label="settings_upgrade_to_pro_label" data-aria-label="$benefit_name" tabindex="0" aria-label="Перейти на Wunderlist Pro"> <strong><text rel="settings_upgrade_to_pro_label" data="$benefit_name">Перейти на <token class="token_0" title="Wunderlist Pro">Wunderlist Pro</token></text></strong> </a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="separator basic-account-settings">
-                                            <!-- Full Name -->
+                                    </div>
+                                    <div class="separator basic-account-settings">
+                                        <!-- Full Name --><br />
+                                        <form ng-submit="editUserName()">
                                             <div class="cols">
                                                 <div class="col-32 text-right">
                                                     <text rel="label_name">Имя</text>
                                                 </div>
-                                                <div class="col-68">
-                                                    <input type="text" id="edit-full-name" data-key-aria-label="label_name" data-key-placeholder="label_name" value="{{profile.userName}}" initial-value="" tabindex="0" placeholder="Имя" aria-label="Имя">
-                                                </div>
-                                            </div> <!-- Email -->
-                                            <div class="cols">
-                                                <div class="col-32 text-right">
-                                                    <text rel="label_email">Электронная почта</text>
-                                                </div>
                                                 <div class="col-40">
-                                                    <input type="text" id="edit-email" data-key-aria-label="label_email" data-key-placeholder="label_email" value="bunjak.maxim@gmail.com" initial-value="" disabled="" tabindex="0" placeholder="Электронная почта" aria-label="Электронная почта">
+                                                    <input ng-model="newUserName.name" type="text" id="edit-full-name" value="{{profile.userName}}" data-key-aria-label="label_name" data-key-placeholder="label_name" initial-value="" tabindex="0" placeholder="Имя" aria-label="Имя">
                                                 </div>
                                                 <div class="col-28">
-                                                    <button id="change-email" class="full" data-key-aria-label="settings_account_change_email" tabindex="0" aria-label="Изменить адрес электронной почты"> <text rel="settings_account_change_email">Изменить адрес электронной почты</text> </button>
+                                                    <button type="submit" id="change-name" class="full" data-key-aria-label="settings_account_change_email" tabindex="0" aria-label="Изменить имя"> <text rel="settings_account_change_email">Изменить имя</text> </button>
                                                 </div>
-                                            </div> <!-- Password for email confirm -->
-                                            <div class="cols password-confirm">
-                                                <div class="col-32 text-right">
-                                                    <text rel="label_password">Пароль</text>
-                                                </div>
-                                                <div class="col-40">
-                                                    <input type="password" id="edit-email-pw-confirm" data-key-aria-label="label_password" disabled="" tabindex="0" aria-label="Пароль">
-                                                </div>
-                                                <div class="col-28"></div>
-                                            </div> <!-- Change Email -->
-                                            <div class="cols change-email-buttons">
-                                                <div class="col-32 text-right"></div>
-                                                <div class="col-40">
-                                                    <div class="cols email-error error-message">
-                                                        <div class="col-100">
-                                                            <text rel="api_error_incorrect_password">Неверный пароль.</text>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cols">
-                                                        <div class="col-50">
-                                                            <button class="full" id="cancel-email" data-key-aria-label="button_cancel" tabindex="0" aria-label="Отмена"> <text rel="button_cancel">Отмена</text> </button>
-                                                        </div>
-                                                        <div class="col-50">
-                                                            <button class="full blue disabled" id="save-email" disabled="" data-key-aria-label="button_save" tabindex="0" aria-label="Сохранить"> <text rel="button_save">Сохранить</text> </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-28"></div>
                                             </div>
-                                            <!-- Change Password -->
+                                        </form>
+
+                                        <!-- Change Password -->
+                                        <form ng-submit="editPassword()">
                                             <div class="cols show-password-buttons">
                                                 <div class="col-32 text-right">
                                                     <text rel="label_password">Пароль</text>
                                                 </div>
                                                 <div class="col-40">
-                                                    <input id="old-password" type="password" tabindex="0" placeholder="Текущий пароль" aria-label="Текущий пароль">
+                                                    <input ng-model="password.oldPassword" id="old-password" type="password" tabindex="0" placeholder="Текущий пароль" aria-label="Текущий пароль">
                                                 </div>
                                                 <div class="col-28"></div>
                                             </div>
@@ -168,12 +124,12 @@
                                                 <div class="col-40">
                                                     <div class="cols">
                                                         <div class="col-100">
-                                                            <input id="new-password" type="password" tabindex="0" placeholder="Новый пароль" aria-label="Новый пароль">
+                                                            <input ng-model="password.newPassword" id="new-password" type="password" tabindex="0" placeholder="Новый пароль" aria-label="Новый пароль">
                                                         </div>
                                                     </div>
                                                     <div class="cols">
                                                         <div class="col-100">
-                                                            <input id="confirm-password" type="password" tabindex="0" placeholder="Повторите новый пароль" aria-label="Повторите новый пароль">
+                                                            <input ng-model="password.confirmPassword" id="confirm-password" type="password" tabindex="0" placeholder="Повторите новый пароль" aria-label="Повторите новый пароль">
                                                         </div>
                                                     </div>
                                                     <div class="cols change-password-error error-message">
@@ -183,85 +139,85 @@
                                                     </div>
                                                     <div class="cols">
                                                         <div class="col-50">
-                                                            <button class="full" id="cancel-password" tabindex="0" aria-label="Отмена"> <text rel="button_cancel">Отмена</text> </button>
                                                         </div>
                                                         <div class="col-50">
-                                                            <button class="full blue" id="save-password" onclick="iscorrect(); return false;" tabindex="0" aria-label="Сохранить"> <text rel="button_save">Изменить</text> </button>
+                                                            <button type="submit" class="full blue" id="save-password" onclick="iscorrect(); return false;" tabindex="0" aria-label="Сохранить"> <text rel="button_save">Изменить</text> </button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-28"></div>
+                                                <div id="errorPassword" class="col-28"></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- Delete Account -->
+                                    <div id="delete-account" style="display:none" class="separator noline delete-form" tabindex="0">
+                                        <div class="cols delete-account-heading">
+                                            <div class="col-32"></div>
+                                            <div class="col-68">
+                                                <h3>
+                                                    <text rel="settings_account_delete_account_confirm">Вы действительно хотите удалить учетную запись?</text>
+                                                </h3>
+                                                <p>
+                                                    <text rel="settings_account_delete_account_confirm_text">При удалении вы потеряете все свои списки и задачи и не сможете их восстановить.</text>
+                                                </p>
                                             </div>
                                         </div>
-                                        <!-- Delete Account -->
-                                        <div id="delete-account" style="display:none" class="separator noline delete-form" tabindex="0">
-                                            <div class="cols delete-account-heading">
-                                                <div class="col-32"></div>
+                                        <div>
+                                            <div class="cols delete-account-password">
+                                                <div class="col-32 text-right">
+                                                    <text rel="settings_account_current_password">Текущий пароль</text>
+                                                </div>
                                                 <div class="col-68">
-                                                    <h3>
-                                                        <text rel="settings_account_delete_account_confirm">Вы действительно хотите удалить учетную запись?</text>
-                                                    </h3>
-                                                    <p>
-                                                        <text rel="settings_account_delete_account_confirm_text">При удалении вы потеряете все свои списки и задачи и не сможете их восстановить.</text>
-                                                    </p>
+                                                    <input type="password" class="delete-password" data-key-aria-label="settings_account_current_password" tabindex="0" aria-label="Текущий пароль">
                                                 </div>
                                             </div>
-                                            <div>
-                                                <div class="cols delete-account-password">
-                                                    <div class="col-32 text-right">
-                                                        <text rel="settings_account_current_password">Текущий пароль</text>
-                                                    </div>
-                                                    <div class="col-68">
-                                                        <input type="password" class="delete-password" data-key-aria-label="settings_account_current_password" tabindex="0" aria-label="Текущий пароль">
-                                                    </div>
+                                            <div class="cols delete-account-confirm">
+                                                <div class="col-32 text-right">
+                                                    <text rel="settings_account_delete_confirmation">Введите «Подтверждаю»</text>
                                                 </div>
-                                                <div class="cols delete-account-confirm">
-                                                    <div class="col-32 text-right">
-                                                        <text rel="settings_account_delete_confirmation">Введите «Подтверждаю»</text>
-                                                    </div>
-                                                    <div class="col-68">
-                                                        <input type="text" class="delete-confirm" data-key-aria-label="settings_account_delete_confirmation" tabindex="0" aria-label="Введите «Подтверждаю»">
-                                                    </div>
+                                                <div class="col-68">
+                                                    <input type="text" class="delete-confirm" data-key-aria-label="settings_account_delete_confirmation" tabindex="0" aria-label="Введите «Подтверждаю»">
                                                 </div>
-                                                <div class="cols delete-password-error error-message">
-                                                    <div class="col-100 text-right">
-                                                        <text rel="api_error_incorrect_password">Неверный пароль.</text>
-                                                    </div>
+                                            </div>
+                                            <div class="cols delete-password-error error-message">
+                                                <div class="col-100 text-right">
+                                                    <text rel="api_error_incorrect_password">Неверный пароль.</text>
                                                 </div>
-                                                <div class="cols text-right">
-                                                    <div class="col-32"></div>
-                                                    <div class="col-34">
-                                                        <button class="full" id="cancel-delete-account" onclick="openbox('delete-account'); return false" tabindex="0" aria-label="Отмена"> <text rel="button_cancel">Отмена</text> </button>
-                                                    </div>
-                                                    <div class="col-34">
-                                                        <button class="full red disabled" id="delete-account" disabled="" data-key-aria-label="button_delete" tabindex="0" aria-label="Удалить"><span></span> <text rel="button_delete">Удалить</text> </button>
-                                                    </div>
+                                            </div>
+                                            <div class="cols text-right">
+                                                <div class="col-32"></div>
+                                                <div class="col-34">
+                                                    <button class="full" id="cancel-delete-account" onclick="openbox('delete-account'); return false" tabindex="0" aria-label="Отмена"> <text rel="button_cancel">Отмена</text> </button>
+                                                </div>
+                                                <div class="col-34">
+                                                    <button class="full red disabled" id="delete-account" disabled="" data-key-aria-label="button_delete" tabindex="0" aria-label="Удалить"><span></span> <text rel="button_delete">Удалить</text> </button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="delete-account" class="separator show-delete-wrapper" style="display:block">
-                                            <div class="cols">
-                                                <div class="col-32"></div>
-                                                <div class="col-40">
-                                                    <button class="red show-delete tabEnd" data-key-aria-label="settings_account_delete_account" tabindex="0" aria-label="Удалить учетную запись" onclick="openbox('delete-account'); return false"> <text rel="settings_account_delete_account">Удалить учетную запись</text> </button>
-                                                </div>
+                                    </div>
+                                    <div id="delete-account" class="separator show-delete-wrapper" style="display:block">
+                                        <div class="cols">
+                                            <div class="col-32"></div>
+                                            <div class="col-40">
+                                                <button class="red show-delete tabEnd" data-key-aria-label="settings_account_delete_account" tabindex="0" aria-label="Удалить учетную запись" onclick="openbox('delete-account'); return false"> <text rel="settings_account_delete_account">Удалить учетную запись</text> </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="content-footer">
-                            <div class="cols">
-                                <div class="col-40"></div>
-                                <div class="col-40"></div>
-                                <div class="col-20">
-                                    <button class="full blue close" onclick="openbox('settings'); return false"><text rel="button_done">Готово</text></button>
-                                </div>
+                    </div>
+                    <div class="content-footer">
+                        <div class="cols">
+                            <div class="col-40"></div>
+                            <div class="col-40"></div>
+                            <div class="col-20">
+                                <button class="full blue close" onclick="openbox('settings'); return false"><text rel="button_done">Готово</text></button>
                             </div>
                         </div>
                     </div>
-                
+                </div>
+
             </div>
         </div>
         <div id="lists" role="navigation">
@@ -277,7 +233,7 @@
                     <a class="user" data-path="me" role="button" tabindex="0" aria-label="Меню пользователя." aria-expanded="false" aria-haspopup="true" onclick="openbox('settings'); return false">
                         <span class="user-avatar">
                             <div class="avatar medium" title="Buniak Maxim">
-                               <img ng-src="data:image/JPEG;base64,{{profile.photo}}"/>
+                                <img ng-src="data:image/JPEG;base64,{{profile.photo}}" />
                             </div>
                         </span> <span class="user-name">{{profile.userName}}</span> <span class="user-arrow"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g> <path d="M10.502,13c-0.132,0 -0.26,-0.053 -0.354,-0.146l-4.002,-4c-0.195,-0.195 -0.195,-0.512 0,-0.708c0.195,-0.195 0.512,-0.195 0.707,0l3.649,3.647l3.644,-3.647c0.195,-0.195 0.512,-0.195 0.707,0c0.195,0.195 0.195,0.512 0,0.708l-3.997,4c-0.094,0.093 -0.221,0.146 -0.354,0.146"></path> </g> </svg> </span>
                         <div id="sync">
@@ -293,7 +249,7 @@
                 <div class="lists-scroll">
                     <ul class="pending-invites-collection"></ul>
                     <ul class="filters-collection">
-                        <li role="menuitem" tabindex="0" class="sidebarItem active" rel="inbox" aria-label=", задачи 0">
+                        <li role="menuitem" tabindex="0" class="sidebarItem" rel="inbox" aria-label=", задачи 0">
                             <a href="#/lists/inbox" aria-hidden="true"> <span class="list-icon" title="Входящие"> <svg class="inbox" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <g stroke="none" stroke-width="1" fill-rule="evenodd"> <g> <path d="M10,15 C8.8,15 7.78,14.14 7.56,13 L2.5,13 C2.22,13 2,12.78 2,12.5 L2,3.5 C2,2.68 2.68,2 3.5,2 L16.5,2 C17.32,2 18,2.68 18,3.5 L18,12.5 C18,12.78 17.78,13 17.5,13 L12.44,13 C12.22,14.14 11.2,15 10,15 L10,15 Z M3,12 L8,12 C8.28,12 8.5,12.22 8.5,12.5 C8.5,13.32 9.18,14 10,14 C10.82,14 11.5,13.32 11.5,12.5 C11.5,12.22 11.72,12 12,12 L17,12 L17,3.5 C17,3.22 16.78,3 16.5,3 L3.5,3 C3.22,3 3,3.22 3,3.5 L3,12 Z M5.5,6 C5.22,6 5,5.78 5,5.5 C5,5.22 5.22,5 5.5,5 L14.5,5 C14.78,5 15,5.22 15,5.5 C15,5.78 14.78,6 14.5,6 L5.5,6 Z M5.5,8 C5.22,8 5,7.78 5,7.5 C5,7.22 5.22,7 5.5,7 L14.5,7 C14.78,7 15,7.22 15,7.5 C15,7.78 14.78,8 14.5,8 L5.5,8 Z M5.5,10 C5.22,10 5,9.78 5,9.5 C5,9.22 5.22,9 5.5,9 L14.5,9 C14.78,9 15,9.22 15,9.5 C15,9.78 14.78,10 14.5,10 L5.5,10 Z M3.5,18 C2.68,18 2,17.32 2,16.5 L2,14.5 C2,14.22 2.22,14 2.5,14 C2.78,14 3,14.22 3,14.5 L3,16.5 C3,16.78 3.22,17 3.5,17 L16.5,17 C16.78,17 17,16.78 17,16.5 L17,14.5 C17,14.22 17.22,14 17.5,14 C17.78,14 18,14.22 18,14.5 L18,16.5 C18,17.32 17.32,18 16.5,18 L3.5,18 Z" id="A"></path> </g> </g> </svg> </span>  <span class="title"><text rel="smart_list_inbox">Входящие</text></span>  <span class="overdue-count" aria-hidden="true"></span> <span class="count" aria-hidden="true"></span>  <span class="list-options" data-key-aria-label="sharing_list_options" data-key-title="sharing_list_options" title="Параметры списка" aria-label="Параметры списка"> <svg class="options rtl-flip" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <g stroke="none" stroke-width="1" fill-rule="evenodd"> <g id="options"> <path d="M17.1330617,2.8594383 C15.9930617,1.7194383 14.0130617,1.7194383 12.8930617,2.8594383 L5.5130617,10.2394383 C5.3330617,10.4394383 5.3330617,10.7594383 5.5130617,10.9594383 C5.7130617,11.1394383 6.0330617,11.1394383 6.2330617,10.9594383 L13.5930617,3.5594383 C14.3530617,2.7994383 15.6730617,2.7994383 16.4130617,3.5594383 C17.1730617,4.3194383 17.1930617,5.5594383 16.4130617,6.3394383 L9.0330617,13.7594383 C8.7130617,14.0794383 8.9330617,14.6194383 9.3730617,14.6194383 C9.5130617,14.6194383 9.6330617,14.5594383 9.7330617,14.4594383 L17.1330617,7.0394383 C18.2930617,5.8794383 18.2930617,4.0194383 17.1330617,2.8594383 L17.1330617,2.8594383 Z M8.4930617,15.3594383 C8.0330617,13.4594383 6.5130617,11.9394383 4.6130617,11.4794383 C4.3530617,11.4194383 4.0930617,11.5794383 4.0130617,11.8194383 L2.0330617,17.3194383 C1.8730617,17.7194383 2.2730617,18.1194383 2.6730617,17.9594383 C8.6730617,15.7794383 8.2530617,15.9594383 8.3730617,15.8194383 C8.4930617,15.6994383 8.5330617,15.5194383 8.4930617,15.3594383 L8.4930617,15.3594383 Z M3.3330617,16.6594383 L4.8130617,12.5794383 C6.0130617,12.9994383 6.9730617,13.9794383 7.3930617,15.1794383 L3.3330617,16.6594383 Z" id="N"></path> </g> </g> </svg></span> </a>
                         </li>
                         <li role="menuitem" tabindex="-1" class="sidebarItem animate-up" rel="assigned" aria-label="Поручены мне, задачи 0" data-type="filter" aria-hidden="true">
@@ -317,7 +273,7 @@
                     </ul>
                     <ul class="lists-collection">
                         <li ng-repeat="list in lists" role="menuitem" tabindex="0" class="sidebarItem list draggable owner" draggable="true" rel="238423933" aria-label="Фильмы, задачи 0">
-                            <a href="#/lists/238423933" aria-hidden="true">
+                            <a id="{{list.id}}" ng-click="selectList(list)" aria-hidden="true">
                                 <span class="list-icon"><svg class="list rtl-flip" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <g id="Web-svgs" stroke="none" stroke-width="1" fill-rule="evenodd"> <g id="list"> <path d="M3,7 C2.44,7 2,6.56 2,6 L2,5 C2,4.44 2.44,4 3,4 L4,4 C4.56,4 5,4.44 5,5 L5,6 C5,6.56 4.56,7 4,7 L3,7 Z M4,5 L3,5 L3,6 L4,6 L4,5 Z M7.5,6 C7.22,6 7,5.78 7,5.5 C7,5.22 7.22,5 7.5,5 L17.5,5 C17.78,5 18,5.22 18,5.5 C18,5.78 17.78,6 17.5,6 L7.5,6 Z M3,12 C2.44,12 2,11.56 2,11 L2,10 C2,9.44 2.44,9 3,9 L4,9 C4.56,9 5,9.44 5,10 L5,11 C5,11.56 4.56,12 4,12 L3,12 Z M4,10 L3,10 L3,11 L4,11 L4,10 Z M7.5,11 C7.22,11 7,10.78 7,10.5 C7,10.22 7.22,10 7.5,10 L17.5,10 C17.78,10 18,10.22 18,10.5 C18,10.78 17.78,11 17.5,11 L7.5,11 Z M3,17 C2.44,17 2,16.56 2,16 L2,15 C2,14.44 2.44,14 3,14 L4,14 C4.56,14 5,14.44 5,15 L5,16 C5,16.56 4.56,17 4,17 L3,17 Z M4,15 L3,15 L3,16 L4,16 L4,15 Z M7.5,16 C7.22,16 7,15.78 7,15.5 C7,15.22 7.22,15 7.5,15 L17.5,15 C17.78,15 18,15.22 18,15.5 C18,15.78 17.78,16 17.5,16 L7.5,16 Z" id="K"> </path> </g> </g> </svg></span>
                                 <span class="title"> {{list.name}} </span> <span class="overdue-count" aria-hidden="true"></span> <span class="count" aria-hidden="true"></span>  <span class="list-options" data-key-aria-label="sharing_list_options" data-key-title="sharing_list_options" title="Параметры списка" aria-label="Параметры списка"> <svg class="options rtl-flip" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <g stroke="none" stroke-width="1" fill-rule="evenodd"> <g id="options"> <path d="M17.1330617,2.8594383 C15.9930617,1.7194383 14.0130617,1.7194383 12.8930617,2.8594383 L5.5130617,10.2394383 C5.3330617,10.4394383 5.3330617,10.7594383 5.5130617,10.9594383 C5.7130617,11.1394383 6.0330617,11.1394383 6.2330617,10.9594383 L13.5930617,3.5594383 C14.3530617,2.7994383 15.6730617,2.7994383 16.4130617,3.5594383 C17.1730617,4.3194383 17.1930617,5.5594383 16.4130617,6.3394383 L9.0330617,13.7594383 C8.7130617,14.0794383 8.9330617,14.6194383 9.3730617,14.6194383 C9.5130617,14.6194383 9.6330617,14.5594383 9.7330617,14.4594383 L17.1330617,7.0394383 C18.2930617,5.8794383 18.2930617,4.0194383 17.1330617,2.8594383 L17.1330617,2.8594383 Z M8.4930617,15.3594383 C8.0330617,13.4594383 6.5130617,11.9394383 4.6130617,11.4794383 C4.3530617,11.4194383 4.0930617,11.5794383 4.0130617,11.8194383 L2.0330617,17.3194383 C1.8730617,17.7194383 2.2730617,18.1194383 2.6730617,17.9594383 C8.6730617,15.7794383 8.2530617,15.9594383 8.3730617,15.8194383 C8.4930617,15.6994383 8.5330617,15.5194383 8.4930617,15.3594383 L8.4930617,15.3594383 Z M3.3330617,16.6594383 L4.8130617,12.5794383 C6.0130617,12.9994383 6.9730617,13.9794383 7.3930617,15.1794383 L3.3330617,16.6594383 Z" id="N"></path> </g> </g> </svg></span>
                             </a>
@@ -327,15 +283,16 @@
                     <ul class="new-list-dropzone"></ul>
                 </div>
                 <div ng-click="showCreateList()" class="sidebarActions">
-                    <a class="sidebarActions-addList"> <span class="sidebarActions-icon"><svg class="plus-small" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"> <g> <path d="M10,10l0,6.5c-0.003,0.053 -0.008,0.103 -0.024,0.155c-0.038,0.116 -0.12,0.217 -0.226,0.278c-0.047,0.027 -0.094,0.042 -0.146,0.056c-0.052,0.008 -0.051,0.008 -0.104,0.011c-0.053,-0.003 -0.103,-0.008 -0.155,-0.024c-0.15,-0.05 -0.271,-0.171 -0.321,-0.321c-0.016,-0.052 -0.021,-0.102 -0.024,-0.155l0,-6.5l-6.5,0c-0.046,-0.002 -0.058,-0.001 -0.104,-0.011c-0.103,-0.022 -0.197,-0.076 -0.268,-0.154c-0.169,-0.188 -0.169,-0.482 0,-0.67c0.035,-0.038 0.077,-0.072 0.122,-0.098c0.078,-0.045 0.161,-0.062 0.25,-0.067l6.5,0l0,-6.5c0.005,-0.089 0.022,-0.172 0.067,-0.25c0.126,-0.219 0.406,-0.31 0.636,-0.207c0.048,0.022 0.093,0.05 0.132,0.085c0.078,0.071 0.132,0.165 0.154,0.268c0.01,0.046 0.009,0.058 0.011,0.104l0,6.5l6.5,0c0.046,0.002 0.058,0.001 0.104,0.011c0.103,0.022 0.197,0.076 0.268,0.154c0.169,0.188 0.169,0.482 0,0.67c-0.035,0.038 -0.077,0.072 -0.122,0.098c-0.078,0.045 -0.161,0.062 -0.25,0.067l-6.5,0Z"></path> </g> </svg></span> 
-                        <span class="sidebarActions-label"><text rel="placeholder_create_list">Создать список</text></span> 
+                    <a class="sidebarActions-addList" onclick="openbox('addList'); return false">
+                        <span class="sidebarActions-icon"><svg class="plus-small" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"> <g> <path d="M10,10l0,6.5c-0.003,0.053 -0.008,0.103 -0.024,0.155c-0.038,0.116 -0.12,0.217 -0.226,0.278c-0.047,0.027 -0.094,0.042 -0.146,0.056c-0.052,0.008 -0.051,0.008 -0.104,0.011c-0.053,-0.003 -0.103,-0.008 -0.155,-0.024c-0.15,-0.05 -0.271,-0.171 -0.321,-0.321c-0.016,-0.052 -0.021,-0.102 -0.024,-0.155l0,-6.5l-6.5,0c-0.046,-0.002 -0.058,-0.001 -0.104,-0.011c-0.103,-0.022 -0.197,-0.076 -0.268,-0.154c-0.169,-0.188 -0.169,-0.482 0,-0.67c0.035,-0.038 0.077,-0.072 0.122,-0.098c0.078,-0.045 0.161,-0.062 0.25,-0.067l6.5,0l0,-6.5c0.005,-0.089 0.022,-0.172 0.067,-0.25c0.126,-0.219 0.406,-0.31 0.636,-0.207c0.048,0.022 0.093,0.05 0.132,0.085c0.078,0.071 0.132,0.165 0.154,0.268c0.01,0.046 0.009,0.058 0.011,0.104l0,6.5l6.5,0c0.046,0.002 0.058,0.001 0.104,0.011c0.103,0.022 0.197,0.076 0.268,0.154c0.169,0.188 0.169,0.482 0,0.67c-0.035,0.038 -0.077,0.072 -0.122,0.098c-0.078,0.045 -0.161,0.062 -0.25,0.067l-6.5,0Z"></path> </g> </svg></span>
+                        <span class="sidebarActions-label"><text rel="placeholder_create_list">Создать список</text></span>
                     </a>
                 </div>
             </div>
         </div>
         <div id="tasks" role="main">
             <div id="list-toolbar">
-                <h1 class="title">Входящие</h1>
+                <h1 class="title">{{}}</h1>
                 <div class="actionBar">
                     <div class="actionBar-top" style="height: 0px;">
                         <!-- Sorting -->
@@ -388,9 +345,7 @@
                         </ul>
                     </div>
                     <div class="actionBar-bottom">
-                        <a class="tab share first-tab disabled" data-menu="share" role="button" tabindex="0" data-key-aria-label="button_label_publiclist_share" aria-label="Поделиться" aria-disabled="true">  <svg class="share rtl-flip" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-disabled="true"> <g stroke="none" stroke-width="1" fill-rule="evenodd"> <g id="share"> <path d="M11.5025,12 C13.7825,12 15.5025,8.84 15.5025,6 C15.5025,3.8 13.7025,2 11.5025,2 C9.3025,2 7.5025,3.8 7.5025,6 C7.5025,8.5 9.0225,12 11.5025,12 L11.5025,12 Z M11.5025,3 C13.1625,3 14.5025,4.34 14.5025,6 C14.5025,8.26 13.1225,11 11.5025,11 C9.8425,11 8.5025,8.26 8.5025,6 C8.5025,4.34 9.8425,3 11.5025,3 L11.5025,3 Z M4.5025,10 L6.0025,10 C6.2825,10 6.5025,9.78 6.5025,9.5 C6.5025,9.22 6.2825,9 6.0025,9 L4.5025,9 L4.5025,7.5 C4.5025,7.22 4.2825,7 4.0025,7 C3.7225,7 3.5025,7.22 3.5025,7.5 L3.5025,9 L2.0025,9 C1.7225,9 1.5025,9.22 1.5025,9.5 C1.5025,9.78 1.7225,10 2.0025,10 L3.5025,10 L3.5025,11.5 C3.5025,11.78 3.7225,12 4.0025,12 C4.2825,12 4.5025,11.78 4.5025,11.5 L4.5025,10 Z M18.2625,14.88 C18.0625,14 17.4025,13.28 16.5225,13.04 L14.2225,12.36 C14.0825,12.32 13.9625,12.26 13.8625,12.14 C13.6625,11.96 13.3425,11.96 13.1625,12.16 C12.9625,12.34 12.9625,12.66 13.1625,12.86 C13.3825,13.08 13.6425,13.24 13.9425,13.32 L16.2425,14 C16.7625,14.14 17.1625,14.58 17.2825,15.1 L17.4425,15.8 C16.9025,16.16 15.2025,17 11.5025,17 C7.7825,17 6.1025,16.14 5.5625,15.8 L5.7225,15.04 C5.8425,14.5 6.2625,14.06 6.8025,13.92 L9.0425,13.32 C9.3425,13.24 9.6225,13.08 9.8625,12.86 C10.0425,12.66 10.0425,12.34 9.8625,12.14 C9.6625,11.96 9.3425,11.96 9.1425,12.14 C9.0425,12.24 8.9225,12.32 8.7825,12.36 L6.5425,12.96 C5.6425,13.2 4.9625,13.92 4.7425,14.82 L4.5225,15.9 C4.4825,16.06 4.5225,16.24 4.6425,16.36 C4.7225,16.42 6.3625,18 11.5025,18 C16.6425,18 18.2825,16.42 18.3625,16.36 C18.4825,16.24 18.5225,16.06 18.4825,15.9 L18.2625,14.88 Z" id="W"></path> </g> </g> </svg> <span class="tab-text"><text rel="button_label_publiclist_share">Поделиться</text></span> </a>
-                        <a class="tab sort-az disabled" data-menu="sort" role="button" tabindex="0" data-key-aria-label="aria_sort_list" aria-label="Сортировать список" aria-disabled="true">  <svg class="sort-az" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-disabled="true"> <g stroke="none" stroke-width="1" fill-rule="evenodd"> <g id="sort-az"> <path d="M14.2,2.3 C14.12,2.12 13.94,2 13.76,2 L13.26,2 C13.06,2 12.88,2.12 12.8,2.3 L10.04,8.3 C9.94,8.54 10.04,8.84 10.3,8.96 C10.54,9.08 10.84,8.96 10.96,8.7 L11.74,7 L15.26,7 L16.04,8.7 C16.14,8.9 16.32,9 16.5,9 C16.58,9 16.64,8.98 16.7,8.96 C16.96,8.84 17.06,8.54 16.96,8.3 L14.2,2.3 Z M5.64,3.02 C5.56,3 5.48,3 5.4,3 C5.3,3.02 5.22,3.08 5.14,3.16 L3.14,5.14 C2.96,5.34 2.96,5.66 3.14,5.86 C3.34,6.04 3.66,6.04 3.86,5.86 L5,4.7 L5,8.5 C5,8.78 5.22,9 5.5,9 C5.78,9 6,8.78 6,8.5 L6,4.7 L7.14,5.86 C7.24,5.96 7.38,6 7.5,6 C7.62,6 7.76,5.96 7.86,5.86 C8.04,5.66 8.04,5.34 7.86,5.14 C5.68,2.98 5.8,3.08 5.64,3.02 L5.64,3.02 Z M14.8,6 L12.2,6 L13.5,3.16 L14.8,6 Z M6,15.3 L6,11.5 C6,11.22 5.78,11 5.5,11 C5.22,11 5,11.22 5,11.5 L5,15.3 L3.86,14.14 C3.66,13.96 3.34,13.96 3.14,14.14 C2.96,14.34 2.96,14.66 3.14,14.86 C5.28,17 5.2,16.96 5.4,17 C5.56,17.02 5.74,16.98 5.86,16.84 L7.86,14.86 C8.04,14.66 8.04,14.34 7.86,14.14 C7.66,13.96 7.34,13.96 7.14,14.14 L6,15.3 Z M15.94,11.26 C15.86,11.1 15.68,11 15.5,11 L11.5,11 C11.22,11 11,11.22 11,11.5 C11,11.78 11.22,12 11.5,12 L14.56,12 L11.08,17.22 C10.98,17.38 10.98,17.58 11.06,17.74 C11.14,17.9 11.32,18 11.5,18 L15.5,18 C15.78,18 16,17.78 16,17.5 C16,17.22 15.78,17 15.5,17 L12.44,17 L15.92,11.78 C16.02,11.62 16.02,11.42 15.94,11.26 L15.94,11.26 Z" id="sort"></path> </g> </g> </svg> <span class="tab-text"><text rel="button_sort">Сортировка</text></span> </a>
-                        <a class="tab last-tab" data-menu="more" role="button" tabindex="0" data-key-aria-label="button_more" aria-label="Еще"> <svg class="folder-option" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g id="Layer 1"> <path d="M3.5,11c0.828,0 1.5,-0.672 1.5,-1.5c0,-0.828 -0.672,-1.5 -1.5,-1.5c-0.828,0 -1.5,0.672 -1.5,1.5c0,0.828 0.672,1.5 1.5,1.5Z"></path> <path d="M9.5,11c0.828,0 1.5,-0.672 1.5,-1.5c0,-0.828 -0.672,-1.5 -1.5,-1.5c-0.828,0 -1.5,0.672 -1.5,1.5c0,0.828 0.672,1.5 1.5,1.5Z"></path> <path d="M15.5,11c0.828,0 1.5,-0.672 1.5,-1.5c0,-0.828 -0.672,-1.5 -1.5,-1.5c-0.828,0 -1.5,0.672 -1.5,1.5c0,0.828 0.672,1.5 1.5,1.5Z"></path> </g> </svg>  <span class="tab-text"><text rel="button_more">Еще</text></span> </a>
+                        <a href="/Account/Logout" class="tab last-tab" data-menu="more" role="button" tabindex="0" aria-label="Выход"> <svg width="10px" height="10px" viewBox="0 0 20 20"> </svg>  <span class="tab-text"><text rel="button_more">Выход</text></span> </a>
                     </div>
                 </div>
             </div>
@@ -416,7 +371,7 @@
                 </div>
                 <div class="task-list inbox">
                     <ol class="tasks">
-                        <li ng-repeat="task in tasks | filter: task.completed == false" tabindex="0" class="taskItem" rel="lwaec32935c37193005a4eb5af004668" aria-label=";km;lНажмите клавишу TAB, чтобы отобразить дополнительные параметры." draggable="true">
+                        <li ng-repeat="task in tasks | filter: task.completed == false" ng-dblclick="editTask(task)" tabindex="0" class="taskItem" rel="lwaec32935c37193005a4eb5af004668" aria-label=";km;lНажмите клавишу TAB, чтобы отобразить дополнительные параметры." draggable="true">
                             <div class="taskItem-body">
                                 <a ng-click="checkTask(task)" class="taskItem-checkboxWrapper checkBox" tabindex="-1" aria-hidden="true"> <span data-key-title="contextual_mark_as_completed" title="Пометить как завершенную"><svg class="task-check" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g> <path d="M17.5,4.5c0,-0.53 -0.211,-1.039 -0.586,-1.414c-0.375,-0.375 -0.884,-0.586 -1.414,-0.586c-2.871,0 -8.129,0 -11,0c-0.53,0 -1.039,0.211 -1.414,0.586c-0.375,0.375 -0.586,0.884 -0.586,1.414c0,2.871 0,8.129 0,11c0,0.53 0.211,1.039 0.586,1.414c0.375,0.375 0.884,0.586 1.414,0.586c2.871,0 8.129,0 11,0c0.53,0 1.039,-0.211 1.414,-0.586c0.375,-0.375 0.586,-0.884 0.586,-1.414c0,-2.871 0,-8.129 0,-11Z" style="fill:none;stroke-width:1px"></path> </g> </svg> </span> <span data-key-title="contextual_mark_as_notcompleted" title="Пометить как незавершенную"><svg class="task-checked" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g> <path d="M9.5,14c-0.132,0 -0.259,-0.052 -0.354,-0.146c-1.485,-1.486 -3.134,-2.808 -4.904,-3.932c-0.232,-0.148 -0.302,-0.457 -0.153,-0.691c0.147,-0.231 0.456,-0.299 0.69,-0.153c1.652,1.049 3.202,2.266 4.618,3.621c2.964,-4.9 5.989,-8.792 9.749,-12.553c0.196,-0.195 0.512,-0.195 0.708,0c0.195,0.196 0.195,0.512 0,0.708c-3.838,3.837 -6.899,7.817 -9.924,12.902c-0.079,0.133 -0.215,0.221 -0.368,0.24c-0.021,0.003 -0.041,0.004 -0.062,0.004"></path> <path d="M15.5,18l-11,0c-1.379,0 -2.5,-1.121 -2.5,-2.5l0,-11c0,-1.379 1.121,-2.5 2.5,-2.5l10,0c0.276,0 0.5,0.224 0.5,0.5c0,0.276 -0.224,0.5 -0.5,0.5l-10,0c-0.827,0 -1.5,0.673 -1.5,1.5l0,11c0,0.827 0.673,1.5 1.5,1.5l11,0c0.827,0 1.5,-0.673 1.5,-1.5l0,-9.5c0,-0.276 0.224,-0.5 0.5,-0.5c0.276,0 0.5,0.224 0.5,0.5l0,9.5c0,1.379 -1.121,2.5 -2.5,2.5"></path> </g> </svg> </span> </a>
                                 <div class="taskItem-titleWrapper" tabindex="-1" aria-hidden="true">
@@ -444,7 +399,7 @@
                                 <div class="taskItem-titleWrapper" tabindex="-1" aria-hidden="true">
                                     <span class="taskItem-titleWrapper-title">{{task.name}}</span>
                                     <div class="taskItem-titleMeta-info">
-                                        2&nbsp;ч назад
+                                        <!--2&nbsp;ч назад-->
                                         <text rel="label_by_$" data="vit">пользователем <token class="token_0" title="vit">vit</token></text>
                                     </div>
                                 </div>
@@ -464,10 +419,107 @@
                 <div class="tasks-404 hidden"></div>
             </div>
         </div>
-        <div role="contentinfo" id="detail"></div>
+        <div role="contentinfo" id="detail" class="animated" style="display:none; width:360px">
+            <div class="inner">
+                <div class="top">
+                    <a ng-click="checkTask(activeTask)" class="detail-checkbox checkBox" role="checkbox" aria-checked="false" data-key-aria-label="smart_list_completed" tabindex="0" aria-label="Выполненные"> <span data-key-title="contextual_mark_as_completed" title="Пометить как завершенную"><svg class="detail-check" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g> <path d="M17.5,4.5c0,-0.53 -0.211,-1.039 -0.586,-1.414c-0.375,-0.375 -0.884,-0.586 -1.414,-0.586c-3.271,0 -9.729,0 -13,0c-0.53,0 -1.039,0.211 -1.414,0.586c-0.375,0.375 -0.586,0.884 -0.586,1.414c0,3.271 0,9.729 0,13c0,0.53 0.211,1.039 0.586,1.414c0.375,0.375 0.884,0.586 1.414,0.586c3.271,0 9.729,0 13,0c0.53,0 1.039,-0.211 1.414,-0.586c0.375,-0.375 0.586,-0.884 0.586,-1.414c0,-3.271 0,-9.729 0,-13Z" style="fill:none;stroke-width:1px"></path> </g> </svg> </span> <span data-key-title="contextual_mark_as_notcompleted" title="Пометить как незавершенную"><svg class="detail-checked" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g> <path d="M8.489,15c-0.132,0 -0.259,-0.052 -0.354,-0.146c-1.485,-1.486 -3.134,-2.808 -4.904,-3.932c-0.232,-0.148 -0.302,-0.457 -0.153,-0.691c0.147,-0.232 0.456,-0.299 0.69,-0.153c1.652,1.049 3.202,2.266 4.618,3.621c3.242,-5.361 6.486,-9.443 10.767,-13.559c0.198,-0.192 0.517,-0.185 0.707,0.013c0.192,0.2 0.186,0.516 -0.014,0.707c-4.356,4.189 -7.625,8.344 -10.927,13.896c-0.079,0.133 -0.215,0.221 -0.368,0.24c-0.021,0.003 -0.041,0.004 -0.062,0.004" style="fill-rule:nonzero;"></path> <path d="M15.5,20l-13,0c-1.379,0 -2.5,-1.121 -2.5,-2.5l0,-13c0,-1.379 1.121,-2.5 2.5,-2.5l11,0c0.276,0 0.5,0.224 0.5,0.5c0,0.276 -0.224,0.5 -0.5,0.5l-11,0c-0.827,0 -1.5,0.673 -1.5,1.5l0,13c0,0.827 0.673,1.5 1.5,1.5l13,0c0.827,0 1.5,-0.673 1.5,-1.5l0,-11c0,-0.276 0.224,-0.5 0.5,-0.5c0.276,0 0.5,0.224 0.5,0.5l0,11c0,1.379 -1.121,2.5 -2.5,2.5" style="fill-rule:nonzero;"></path> </g> </svg> </span> </a>
+                    <a class="detail-star" role="checkbox" aria-checked="false" data-key-aria-label="smart_list_starred" tabindex="0" aria-label="Отмеченные"> <span class="star-wrapper" data-key-title="contextual_mark_as_starred" title="Пометить звездочкой"> <svg width="100%" height="100%" viewBox="0 0 22 49" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g> <path d="M11,20.48c-0.18,0 -0.36,0.08 -0.44,0.26l-1.68,5.26l-5.54,0c-0.18,0 -0.36,0.12 -0.42,0.3c-0.06,0.2 0.02,0.4 0.16,0.5l4.46,3.24l-1.68,5.26c-0.08,0.18 0,0.38 0.16,0.5c0.06,0.06 0.16,0.1 0.24,0.1c0.1,0 0.2,-0.04 0.28,-0.1l4.46,-3.24l4.46,3.24c0.08,0.06 0.18,0.08 0.28,0.08c0.08,0 0.18,-0.02 0.24,-0.08c0.16,-0.12 0.24,-0.32 0.16,-0.5l-1.68,-5.26l4.46,-3.24c0.14,-0.1 0.22,-0.3 0.16,-0.5c-0.08,-0.18 -0.24,-0.3 -0.42,-0.3l-5.52,0l-1.7,-5.26c-0.08,-0.18 -0.26,-0.26 -0.44,-0.26ZM11,22.66l1.2,3.64l0.22,0.7l4.54,0l-3.68,2.66l0.22,0.7l1.18,3.64l-3.68,-2.66l-3.68,2.66l1.18,-3.64l0.22,-0.7l-3.68,-2.66l4.56,0l0.22,-0.7l1.18,-3.64Z"> </path></g> </svg> </span> <span class="starred-wrapper hidden" data-key-title="contextual_mark_as_unstarred" title="Убрать пометку звездочкой"> <svg width="100%" height="100%" viewBox="0 0 22 49" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"> <g> <path d="M0,0l0,48.48c0,0.28 0.22,0.42 0.48,0.34l10.04,-3.66c0.28,-0.1 0.7,-0.1 0.96,0l10.04,3.66c0.28,0.08 0.48,-0.06 0.48,-0.34l0,-48.48l-22,0ZM14.56,30.06l1.68,5.26c0.08,0.18 0,0.38 -0.16,0.5c-0.14,0.1 -0.36,0.1 -0.52,0l-4.46,-3.24l-4.46,3.24c-0.08,0.06 -0.18,0.08 -0.28,0.08c-0.08,0 -0.18,-0.02 -0.24,-0.08c-0.16,-0.12 -0.24,-0.32 -0.16,-0.5l1.68,-5.26l-4.46,-3.24c-0.14,-0.1 -0.22,-0.32 -0.16,-0.52c0.06,-0.16 0.24,-0.3 0.42,-0.3l5.54,0l1.68,-5.26c0.14,-0.36 0.74,-0.36 0.88,0l1.7,5.26l5.5,0c0.2,0 0.36,0.14 0.44,0.3c0.06,0.2 -0.02,0.42 -0.16,0.52l-4.46,3.24Z"> </path></g> </svg> </span> </a>
+                    <div class="title-container">
+                        <div tabindex="0" class="title" aria-label="Title: ппппппп">
+                            <span class="title-text">
+                                <div class="content-fakable">
+                                    <div class="display-view">
+                                        <span>{{activeTask.name}}</span>
+                                    </div>
+                                    <div class="edit-view hidden">
+                                        <div class="expandingArea active">
+                                            <pre style="line-height: 24px; font-size: 16px;">ппппппп
+                                            </pre>
+                                            <textarea tabindex="0" class="" style="line-height: 24px; font-size: 16px;">ппппппп</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="body">
+                    <div tabindex="0" class="section section-item detail-assign hidden">
+                        <div class="section-icon">
+                            <svg class="assigned" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <g stroke="none" stroke-width="1" fill-rule="evenodd"> <g> <g id="Rectangle-3-+-A" transform="translate(1.000000, 2.000000)"> <path d="M10,10 C12.28,10 14,6.84 14,4 C14,1.8 12.2,0 10,0 C7.8,0 6,1.8 6,4 C6,6.5 7.52,10 10,10 L10,10 Z M4.94,7.74 C4.98,7.66 5,7.58 5,7.5 C5,7.42 4.98,7.34 4.94,7.26 C4.92,7.22 4.9,7.18 4.86,7.14 L2.86,5.14 C2.66,4.96 2.34,4.96 2.14,5.14 C1.96,5.34 1.96,5.66 2.14,5.86 L3.3,7 L0.5,7 C0.22,7 0,7.22 0,7.5 C0,7.78 0.22,8 0.5,8 L3.3,8 L2.14,9.14 C1.96,9.34 1.96,9.66 2.14,9.86 C2.24,9.96 2.38,10 2.5,10 C2.62,10 2.76,9.96 2.86,9.86 L4.86,7.86 C4.9,7.82 4.92,7.78 4.94,7.74 L4.94,7.74 Z M16.76,12.88 C16.56,12 15.9,11.28 15.02,11.04 L12.72,10.36 C12.58,10.32 12.46,10.26 12.36,10.14 C12.16,9.96 11.84,9.96 11.66,10.16 C11.46,10.34 8.54,10.34 8.36,10.14 C8.16,9.96 7.84,9.96 7.64,10.14 C7.54,10.24 7.42,10.32 7.28,10.36 L5.04,10.96 C4.14,11.2 3.46,11.92 3.24,12.82 L3.02,13.9 C2.98,14.06 3.02,14.24 3.14,14.36 C3.22,14.42 4.86,16 10,16 C15.14,16 16.78,14.42 16.86,14.36 C16.98,14.24 17.02,14.06 16.98,13.9 L16.76,12.88 Z" fill-opacity="0.06"></path> <path d="M10,10 C12.28,10 14,6.84 14,4 C14,1.8 12.2,0 10,0 C7.8,0 6,1.8 6,4 C6,6.5 7.52,10 10,10 L10,10 Z M10,1 C11.66,1 13,2.34 13,4 C13,6.26 11.62,9 10,9 C8.34,9 7,6.26 7,4 C7,2.34 8.34,1 10,1 L10,1 Z M4.94,7.74 C4.98,7.66 5,7.58 5,7.5 C5,7.42 4.98,7.34 4.94,7.26 C4.92,7.22 4.9,7.18 4.86,7.14 L2.86,5.14 C2.66,4.96 2.34,4.96 2.14,5.14 C1.96,5.34 1.96,5.66 2.14,5.86 L3.3,7 L0.5,7 C0.22,7 0,7.22 0,7.5 C0,7.78 0.22,8 0.5,8 L3.3,8 L2.14,9.14 C1.96,9.34 1.96,9.66 2.14,9.86 C2.24,9.96 2.38,10 2.5,10 C2.62,10 2.76,9.96 2.86,9.86 L4.86,7.86 C4.9,7.82 4.92,7.78 4.94,7.74 L4.94,7.74 Z M16.76,12.88 C16.56,12 15.9,11.28 15.02,11.04 L12.72,10.36 C12.58,10.32 12.46,10.26 12.36,10.14 C12.16,9.96 11.84,9.96 11.66,10.16 C11.46,10.34 11.46,10.66 11.66,10.86 C11.88,11.08 12.14,11.24 12.44,11.32 L14.74,12 C15.26,12.14 15.66,12.58 15.78,13.1 L15.94,13.8 C15.4,14.16 13.7,15 10,15 C6.3,15 4.6,14.14 4.06,13.8 L4.22,13.04 C4.34,12.5 4.76,12.06 5.3,11.92 L7.54,11.32 C7.84,11.24 8.12,11.08 8.36,10.86 C8.54,10.66 8.54,10.34 8.36,10.14 C8.16,9.96 7.84,9.96 7.64,10.14 C7.54,10.24 7.42,10.32 7.28,10.36 L5.04,10.96 C4.14,11.2 3.46,11.92 3.24,12.82 L3.02,13.9 C2.98,14.06 3.02,14.24 3.14,14.36 C3.22,14.42 4.86,16 10,16 C15.14,16 16.78,14.42 16.86,14.36 C16.98,14.24 17.02,14.06 16.98,13.9 L16.76,12.88 Z"> </path> </g> </g> </g> </svg>
+                            <span class="detail-assigned hidden"></span>
+                        </div>
+                        <div class="section-content">
+                            <div class="section-title">
+                                <text rel="label_assign_to">Кому назначено</text>
+                            </div>
+                            <div class="section-edit hidden">
+                                <input type="text" class="assign chromeless" data-key-placeholder="label_assign_to" placeholder="Кому назначено">
+                            </div>
+                        </div>
+                        <a class="section-delete" data-key-aria-label="button_delete" data-key-title="button_delete" tabindex="0" title="Удалить" aria-label="Удалить"> <svg class="delete" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <g stroke="none" stroke-width="1" fill-rule="evenodd"> <g id="delete"> <path d="M10.72,9.9975 L13.86,6.8575 C14.04,6.6575 14.04,6.3375 13.86,6.1375 C13.66,5.9575 13.34,5.9575 13.14,6.1375 L10,9.2775 L6.86,6.1375 C6.66,5.9575 6.34,5.9575 6.14,6.1375 C5.96,6.3375 5.96,6.6575 6.14,6.8575 L9.28,9.9975 L6.14,13.1375 C5.96,13.3375 5.96,13.6575 6.14,13.8575 C6.24,13.9575 6.38,13.9975 6.5,13.9975 C6.62,13.9975 6.76,13.9575 6.86,13.8575 L10,10.7175 L13.14,13.8575 C13.24,13.9575 13.38,13.9975 13.5,13.9975 C13.62,13.9975 13.76,13.9575 13.86,13.8575 C14.04,13.6575 14.04,13.3375 13.86,13.1375 L10.72,9.9975 Z" id="4"></path> </g> </g> </svg> </a>
+                    </div>
+                    <div tabindex="0" role="button" aria-haspopup="true" class="section section-item detail-date editing" aria-label="Задать дату выполнения">
+                        <div class="section-icon">
+                            <svg class="date" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <g stroke="none" stroke-width="1" fill-rule="evenodd"> <g id="date"> <path d="M2.5,7 C2.22,7 2,6.78 2,6.5 L2,3.5 C2,2.68 2.68,2 3.5,2 L16.5,2 C17.32,2 18,2.68 18,3.5 L18,6.5 C18,6.78 17.78,7 17.5,7 L2.5,7 Z M3,6 L17,6 L17,3.5 C17,3.22 16.78,3 16.5,3 L3.5,3 C3.22,3 3,3.22 3,3.5 L3,6 Z M3.5,18 C2.68,18 2,17.32 2,16.5 L2,8.5 C2,8.22 2.22,8 2.5,8 C2.78,8 3,8.22 3,8.5 L3,16.5 C3,16.78 3.22,17 3.5,17 L16.5,17 C16.78,17 17,16.78 17,16.5 L17,8.5 C17,8.22 17.22,8 17.5,8 C17.78,8 18,8.22 18,8.5 L18,16.5 C18,17.32 17.32,18 16.5,18 L3.5,18 Z M8.5,12 C7.68,12 7,11.32 7,10.5 L7,9.5 C7,8.68 7.68,8 8.5,8 C9.32,8 10,8.68 10,9.5 L10,10.5 C10,11.32 9.32,12 8.5,12 L8.5,12 Z M5.5,11 C5.22,11 5,10.78 5,10.5 L5,9.5 C5,9.22 5.22,9 5.5,9 C5.78,9 6,9.22 6,9.5 L6,10.5 C6,10.78 5.78,11 5.5,11 L5.5,11 Z M8.5,9 C8.22,9 8,9.22 8,9.5 L8,10.5 C8,10.78 8.22,11 8.5,11 C8.78,11 9,10.78 9,10.5 L9,9.5 C9,9.22 8.78,9 8.5,9 L8.5,9 Z M11.5,11 C11.22,11 11,10.78 11,10.5 L11,9.5 C11,9.22 11.22,9 11.5,9 C11.78,9 12,9.22 12,9.5 L12,10.5 C12,10.78 11.78,11 11.5,11 L11.5,11 Z M14.5,11 C14.22,11 14,10.78 14,10.5 L14,9.5 C14,9.22 14.22,9 14.5,9 C14.78,9 15,9.22 15,9.5 L15,10.5 C15,10.78 14.78,11 14.5,11 L14.5,11 Z M5.5,15 C5.22,15 5,14.78 5,14.5 L5,13.5 C5,13.22 5.22,13 5.5,13 C5.78,13 6,13.22 6,13.5 L6,14.5 C6,14.78 5.78,15 5.5,15 L5.5,15 Z M8.5,15 C8.22,15 8,14.78 8,14.5 L8,13.5 C8,13.22 8.22,13 8.5,13 C8.78,13 9,13.22 9,13.5 L9,14.5 C9,14.78 8.78,15 8.5,15 L8.5,15 Z M11.5,15 C11.22,15 11,14.78 11,14.5 L11,13.5 C11,13.22 11.22,13 11.5,13 C11.78,13 12,13.22 12,13.5 L12,14.5 C12,14.78 11.78,15 11.5,15 L11.5,15 Z M14.5,15 C14.22,15 14,14.78 14,14.5 L14,13.5 C14,13.22 14.22,13 14.5,13 C14.78,13 15,13.22 15,13.5 L15,14.5 C15,14.78 14.78,15 14.5,15 L14.5,15 Z"></path> </g> </g> </svg>
+                        </div>
+                        <div class="section-content">
+                            <div class="section-title">
+                                <text rel="placeholder_set_due_date">Задать дату выполнения</text>
+                            </div>
+                            <div class="section-description"></div>
+                        </div>
+                        <a class="section-delete" data-key-aria-label="button_delete" data-key-title="button_delete" tabindex="0" title="Удалить" aria-label="Удалить"> <svg class="delete" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <g stroke="none" stroke-width="1" fill-rule="evenodd"> <g id="delete"> <path d="M10.72,9.9975 L13.86,6.8575 C14.04,6.6575 14.04,6.3375 13.86,6.1375 C13.66,5.9575 13.34,5.9575 13.14,6.1375 L10,9.2775 L6.86,6.1375 C6.66,5.9575 6.34,5.9575 6.14,6.1375 C5.96,6.3375 5.96,6.6575 6.14,6.8575 L9.28,9.9975 L6.14,13.1375 C5.96,13.3375 5.96,13.6575 6.14,13.8575 C6.24,13.9575 6.38,13.9975 6.5,13.9975 C6.62,13.9975 6.76,13.9575 6.86,13.8575 L10,10.7175 L13.14,13.8575 C13.24,13.9575 13.38,13.9975 13.5,13.9975 C13.62,13.9975 13.76,13.9575 13.86,13.8575 C14.04,13.6575 14.04,13.3375 13.86,13.1375 L10.72,9.9975 Z" id="4"></path> </g> </g> </svg> </a>
+                    </div>
+                    <div data-key-aria-label="placeholder_add_note" role="textbox" aria-multiline="true" tabindex="0" class="section section-item note" aria-label="Добавить заметку…Нажмите ВВОД, чтобы перейти в режим правки.">
+                        <div class="section-icon">
+                            <svg class="options rtl-flip" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <g stroke="none" stroke-width="1" fill-rule="evenodd"> <g id="options"> <path d="M17.1330617,2.8594383 C15.9930617,1.7194383 14.0130617,1.7194383 12.8930617,2.8594383 L5.5130617,10.2394383 C5.3330617,10.4394383 5.3330617,10.7594383 5.5130617,10.9594383 C5.7130617,11.1394383 6.0330617,11.1394383 6.2330617,10.9594383 L13.5930617,3.5594383 C14.3530617,2.7994383 15.6730617,2.7994383 16.4130617,3.5594383 C17.1730617,4.3194383 17.1930617,5.5594383 16.4130617,6.3394383 L9.0330617,13.7594383 C8.7130617,14.0794383 8.9330617,14.6194383 9.3730617,14.6194383 C9.5130617,14.6194383 9.6330617,14.5594383 9.7330617,14.4594383 L17.1330617,7.0394383 C18.2930617,5.8794383 18.2930617,4.0194383 17.1330617,2.8594383 L17.1330617,2.8594383 Z M8.4930617,15.3594383 C8.0330617,13.4594383 6.5130617,11.9394383 4.6130617,11.4794383 C4.3530617,11.4194383 4.0930617,11.5794383 4.0130617,11.8194383 L2.0330617,17.3194383 C1.8730617,17.7194383 2.2730617,18.1194383 2.6730617,17.9594383 C8.6730617,15.7794383 8.2530617,15.9594383 8.3730617,15.8194383 C8.4930617,15.6994383 8.5330617,15.5194383 8.4930617,15.3594383 L8.4930617,15.3594383 Z M3.3330617,16.6594383 L4.8130617,12.5794383 C6.0130617,12.9994383 6.9730617,13.9794383 7.3930617,15.1794383 L3.3330617,16.6594383 Z" id="N"></path> </g> </g> </svg>
+                        </div>                        
+                        <div class="section-attachments">
+                            <a class="open-fullscreen-note" data-key-aria-label="aria_note_fullscreen" data-key-title="aria_note_fullscreen" role="button" aria-haspopup="true" tabindex="0" title="Открыть примечание на весь экран." aria-label="Открыть примечание на весь экран."> <svg class="fullscreen" width="20px" height="20px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"> <g> <path d="M12.5,10c-0.276,0-0.5,0.224-0.5,0.5v3c0,0.275-0.225,0.5-0.5,0.5h-6C5.224,14,5,13.775,5,13.5v-6 C5,7.224,5.224,7,5.5,7h3C8.776,7,9,6.776,9,6.5S8.776,6,8.5,6h-3C4.673,6,4,6.673,4,7.5v6C4,14.327,4.673,15,5.5,15h6 c0.827,0,1.5-0.673,1.5-1.5v-3C13,10.224,12.776,10,12.5,10z"></path> <path d="M14.962,4.309c-0.051-0.122-0.148-0.22-0.271-0.271C14.63,4.013,14.565,4,14.5,4h-4 C10.224,4,10,4.224,10,4.5S10.224,5,10.5,5h2.793l-5.146,5.146c-0.195,0.195-0.195,0.512,0,0.707C8.244,10.951,8.372,11,8.5,11 s0.256-0.049,0.354-0.146L14,5.707V8.5C14,8.776,14.224,9,14.5,9S15,8.776,15,8.5v-4C15,4.435,14.987,4.37,14.962,4.309z"></path> </g> </svg>  </a>
+                        </div>
+                    </div>                    
+                    <div tabindex="0" class="section smart-cards"></div>
+                    <div class="comments-main">
+                        <div class="state loading spinner">
+                            <span class="dark"></span>
+                            <div class="error hidden">
+                                <text rel="comment_request_failed">К сожалению, не удалось загрузить комментарии. Попробуйте еще раз.</text>
+                            </div>
+                        </div>
+                        <ul class="comments-list"></ul>
+                    </div>
+                </div>
+                <div class="dropTarget"></div>
+                <div class="bottom">
+                    <a onclick="openbox('detail'); return false" class="detail-close" tabindex="0" data-key-aria-label="button_hide_detail_view" data-key-title="button_hide_detail_view" title="Скрыть подробное представление" aria-label="Скрыть подробное представление"> <svg class="close-right" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <g stroke="none" stroke-width="1" fill-rule="evenodd"> <g id="close-right"> <path d="M4.5,18 C3.12,18 2,16.88 2,15.5 L2,4.5 C2,3.12 3.12,2 4.5,2 L15.5,2 C16.88,2 18,3.12 18,4.5 L18,15.5 C18,16.88 16.88,18 15.5,18 L4.5,18 Z M4.5,3 C3.68,3 3,3.68 3,4.5 L3,15.5 C3,16.32 3.68,17 4.5,17 L15.5,17 C16.32,17 17,16.32 17,15.5 L17,4.5 C17,3.68 16.32,3 15.5,3 L4.5,3 Z M7.5,15 C7.38,15 7.24,14.96 7.14,14.86 C6.96,14.66 6.96,14.34 7.14,14.14 L11.3,10 L7.14,5.86 C6.96,5.66 6.96,5.34 7.14,5.14 C7.34,4.96 7.66,4.96 7.86,5.14 L12.36,9.64 C12.54,9.84 12.54,10.16 12.36,10.36 L7.86,14.86 C7.76,14.96 7.62,15 7.5,15 L7.5,15 Z" id="i"></path> </g> </g> </svg> </a>
+                    <a ng-click="deleteTask()" class="detail-trash" role="button" data-key-aria-label="label_delete_task" tabindex="0" data-key-title="label_delete_task" title="Удалить задачу" aria-label="Удалить задачу">  <svg class="trash" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <g stroke="none" stroke-width="1" fill-rule="evenodd"> <g id="trash"> <path d="M12,3.5 C12,2.4 11.1,1.5 10,1.5 C8.9,1.5 8,2.4 8,3.5 L5.5,3.5 C4.68,3.5 4,4.18 4,5 L4,7 C4,7.28 4.22,7.5 4.5,7.5 L15.5,7.5 C15.78,7.5 16,7.28 16,7 L16,5 C16,4.18 15.32,3.5 14.5,3.5 L12,3.5 Z M10,2.5 C10.56,2.5 11,2.94 11,3.5 L9,3.5 C9,2.94 9.44,2.5 10,2.5 L10,2.5 Z M15,6.5 L5,6.5 L5,5 C5,4.72 5.22,4.5 5.5,4.5 L14.5,4.5 C14.78,4.5 15,4.72 15,5 L15,6.5 Z M14.5,8.5 C14.22,8.5 14,8.72 14,9 L14,16 C14,16.28 13.78,16.5 13.5,16.5 L6.5,16.5 C6.22,16.5 6,16.28 6,16 L6,9 C6,8.72 5.78,8.5 5.5,8.5 C5.22,8.5 5,8.72 5,9 L5,16 C5,16.82 5.68,17.5 6.5,17.5 L13.5,17.5 C14.32,17.5 15,16.82 15,16 L15,9 C15,8.72 14.78,8.5 14.5,8.5 L14.5,8.5 Z M9,9 C9,8.72 8.78,8.5 8.5,8.5 C8.22,8.5 8,8.72 8,9 L8,15 C8,15.28 8.22,15.5 8.5,15.5 C8.78,15.5 9,15.28 9,15 L9,9 Z M12,9 C12,8.72 11.78,8.5 11.5,8.5 C11.22,8.5 11,8.72 11,9 L11,15 C11,15.28 11.22,15.5 11.5,15.5 C11.78,15.5 12,15.28 12,15 L12,9 Z" id="j"></path> </g> </g> </svg> </a>
+                    <div class="comments">
+                        <div class="comments-bottom ">
+                            <div class="last-comment hidden">
+                                <span class="unread-count hidden"></span>
+                            </div>
+                            <div class="comments-add">
+                                <div class="input-fake">
+                                    <div class="expandingArea active">
+                                        <pre style="line-height: 20px; font-size: 15px;"><span></span><br></pre>
+                                        <form ng-submit="editNote()">
+                                            <input ng-model="activeTask.note" tabindex="0" class="" data-key-placeholder="placeholder_add_comments" data-key-aria-label="placeholder_add_comments" placeholder="Добавить заметку…" aria-label="Добавить заметку…" style="line-height: 20px; font-size: 15px;" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-info">
+                        <text rel="label_created_$" data="5&nbsp;мин назад"> <token class="token_0" title="5&nbsp;мин назад"></token></text>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="audio-player">
-            <audio id="wl3-notification" class="hidden"> <source class="ogg" src="//static.wunderlist.com/9f8e1fddb616e757d301b3f88451b0c4f077c5f9/sounds/wl3-notification.ogg" type="audio/ogg"> <source class="m4a" src="//static.wunderlist.com/9a6941c6915a01bed4c4b729d5a96e98054677be/sounds/wl3-notification.m4a" type="audio/mp4"> </audio>
-            <audio id="wl3-complete" class="hidden"> <source class="ogg" src="//static.wunderlist.com/10575bff4256cf17be631e3bf4871a870c8cb824/sounds/wl3-complete.ogg" type="audio/ogg"> <source class="m4a" src="//static.wunderlist.com/bdd6a6e795b5e71bd98b6258babde941ec696f2e/sounds/wl3-complete.m4a" type="audio/mp4"> </audio>
+            <audio id="wl3-notification" class="hidden"> <source class="ogg" src="~/Content/wl3-notification.ogg" type="audio/ogg"> </audio>
+            <audio id="wl3-complete" class="hidden"> <source class="ogg" src="~/Content/wl3-complete.ogg" type="audio/mp4"> </audio>
         </div>
     </div>
     <script src="~/Scripts/angular.min.js"></script>

@@ -24,8 +24,8 @@ namespace Wunderlist.Services
         {
             User user = _uow.Users.GetFirst(us => us.Email == email);
             user.UserName = newName;
-            _uow.Users.Update(user);
-            _uow.Commit();
+
+            Update(user);
         }
 
         public void Registration(User user)
@@ -34,7 +34,7 @@ namespace Wunderlist.Services
 
             if (u != null)
                 throw new Exception("the user exists");
-                
+
             _uow.Users.Create(user);
             _uow.Commit();
         }
@@ -44,11 +44,20 @@ namespace Wunderlist.Services
             return _uow.Users.GetFirst(us => us.Email == email);
         }
 
+        public User GetById(string id)
+        {
+            return _uow.Users.GetFirst(us => us.Id == id);
+        }
+
         public void ChangePhoto(string email, byte[] photo)
         {
             User user = GetByEmail(email);
             user.Photo = photo;
+            Update(user);
+        }
 
+        public void Update(User user)
+        {
             _uow.Users.Update(user);
             _uow.Commit();
         }

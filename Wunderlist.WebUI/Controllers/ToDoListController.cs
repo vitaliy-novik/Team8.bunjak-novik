@@ -30,6 +30,7 @@ namespace Wunderlist.WebUI.Controllers
             var a = service.GetAllLists(User.Identity.Name).ToArray();
             return Ok(a.Select(b => new
             {
+                id = b.Id,
                 name = b.Name
             }).ToArray());
             
@@ -40,9 +41,11 @@ namespace Wunderlist.WebUI.Controllers
             var r = service.GetList(User.Identity.Name, id);
             return Ok(r.Items.Select(i => new
             {
+                id = i.Id,
                 name = i.Name,
                 completed = i.IsCompleted,
-                date = i.Date
+                date = i.Date,
+                List = r.Id
             }
             ));
         }

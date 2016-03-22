@@ -104,10 +104,10 @@ namespace Wunderlist.WebUI.Controllers
         [HttpPost]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && model.newPassword == model.confirmPassword)
             {
                 User user = await _userManager.FindByNameAsync(HttpContext.User.Identity.Name);
-                IdentityResult result = await _userManager.ChangePasswordAsync(user.Id, model.OldPassword, model.NewPassword);
+                IdentityResult result = await _userManager.ChangePasswordAsync(user.Id, model.oldPassword, model.newPassword);
                 if (result.Succeeded)
                 {
                     IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;

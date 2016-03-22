@@ -47,7 +47,8 @@ namespace Stores
 
         public Task<User> FindByIdAsync(string userId)
         {
-            throw new NotImplementedException();
+            var user = _accountService.GetById(userId);
+            return Task.FromResult(user);
         }
 
         public Task<User> FindByNameAsync(string email)

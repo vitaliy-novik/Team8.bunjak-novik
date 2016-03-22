@@ -7,30 +7,34 @@ itemsModule.controller("addController", function ($scope, $http) {
     $scope.lists = [];
 
     $scope.activeList = "";
+    $scope.activeTask = {};
 
     $scope.profile = [];
-
-    $scope.hideCreateList = false;
-    $scope.showCreateList = function () {
-        $scope.hideCreateList = !$scope.hideCreateList;
-    }
 
     angular.element(document).ready(function () {
         $http.get('../api/ToDoList').success(function (data) {
             console.log(data);
             $scope.lists = data;
-            $scope.activeList = $scope.lists[0].name;
+            $scope.activeList = $scope.lists[0].id;
+            
+            
         }).then(function () {
             $http.get('../api/ToDoList/' + $scope.activeList).success(function (data) {
-            console.log(data);
-            $scope.tasks = data;            
-        });
+                console.log(data);
+                $scope.tasks = data;            
+            }).then(function () {
+                var e = document.getElementById($scope.activeList).parentElement;
+                console.log(e);
+                e.classList.add("active");
+            });
+            
         });
 
         $http.get('../Profile/GetProfile').success(function (data) {
             if (data) {
                 $scope.profile.photo = data.photo;
                 $scope.profile.userName = data.userName;
+                $scope.profile.email = data.email;
             } else {
                 alert('Sorry, there is some error.');
             }
@@ -44,6 +48,43 @@ itemsModule.controller("addController", function ($scope, $http) {
     $scope.newList = {};
 
     $scope.hideCompleted = true;
+    
+    $scope.selectList = function (param) {
+        console.log(param);
+        if ($scope.activeList != param.id) {
+            var old = document.getElementById($scope.activeList).parentElement;
+            console.log(old);
+            old.classList.remove("active");
+            console.log(old);
+            $scope.activeList = param.id;
+            document.getElementById(param.id).parentElement.classList.add("active");
+            $http.get('../api/ToDoList/' + $scope.activeList).success(function (data) {
+                $scope.tasks = data;
+            });
+        }        
+    }
+
+    $scope.editTask = function (task) {
+        console.log(task);
+        $scope.activeTask = task;
+        $scope.openbox('detail');
+    }
+
+    $scope.deleteTask = function () {
+        $http.delete('../api/ToDoItems/' + $scope.activeTask.id).success(function () {
+            $http.get('../api/ToDoList/' + $scope.activeList).success(function (data) {
+                $scope.tasks = data;
+                $scope.openbox('detail');
+            });
+        });
+    }
+
+    $scope.editNote = function () {
+        console.dir('aaaaaa');
+        $http.put('../api/ToDoItems/' + $scope.activeTask.id, $scope.activeTask).success(function () {
+            $scope.openbox('detail');
+        });
+    }
 
     $scope.show = function () {
         $scope.hideCompleted = !$scope.hideCompleted;
@@ -66,7 +107,6 @@ itemsModule.controller("addController", function ($scope, $http) {
     $scope.addList = function () {
         if (this.newList.name) {
             $http.post('../api/ToDoList', $scope.newList).success(function () {
-                $scope.hideCreateList = false;
                 $scope.lists.push($scope.newList);
                 $scope.newList = null;
             });
@@ -75,7 +115,42 @@ itemsModule.controller("addController", function ($scope, $http) {
     
     $scope.checkTask = function (task) {
         task.completed = !task.completed;
+        task.List = $scope.activeList;
+        console.log(task);
+        $http.put('../api/ToDoItems/' + task.id, task).success(function () {            
+            document.getElementById('wl3-complete').play();
+        });
+        
     };
 
+    $scope.newUserName = {};
+    $scope.editUserName = function () {
+        if (this.newUserName.name) {
+            $http.post('../Profile/EditName',
+                $scope.newUserName).success(function () {
+                $scope.profile.userName = $scope.newUserName.name;
+            });
+            console.log(typeof (this.newUserName.name));
+        }
+    };
 
+    $scope.password = {}
+    $scope.editPassword = function () {
+        if (this.password.confirmPassword == this.password.newPassword) {
+            $http.post('../Account/ChangePassword',
+                $scope.password).success(function () {
+                    document.getElementById('errorPassword').textContent = 'Парорь изменён';
+                });
+        }
+        else document.getElementById('errorPassword').textContent='Пароли должны совпадать';
+    };
+
+    $scope.openbox = function (id) {
+        var display = document.getElementById(id).style.display;
+        if (display == 'none') {
+            document.getElementById(id).style.display = 'block';
+        } else {
+            document.getElementById(id).style.display = 'none';
+        }
+    }
 });

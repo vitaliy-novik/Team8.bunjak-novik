@@ -50,9 +50,18 @@ namespace Wunderlist.WebUI.Controllers
             ));
         }
 
+        public void Delete(string id)
+        {
+            service.Delete(id);
+        }
+
+        public void Put([FromBody]EditListViewModel value)
+        {
+            service.Update(new ToDoList { Id = value.Id, Name = value.Name});
+        }
+
         public void Post([FromBody]AddListViewModel value)
         {
-            
             service.AddList(value.Name, User.Identity.Name);
         }
     }

@@ -12,6 +12,7 @@ namespace Entities
         public string Note { get; set; }
         public DateTime Date { get; set; }
         public bool IsCompleted { get; set; }
+        public bool IsStared { get; set; }
         public ToDoList List { get; set; }
     }
 }

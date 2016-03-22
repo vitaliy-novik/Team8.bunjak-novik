@@ -31,6 +31,14 @@ namespace Wunderlist.Services
             return _uow.Users.GetFirst(us => us.Email == email).ToDoLists;
         }
 
+        public void Update(ToDoList renameList)
+        {
+            var list = _uow.ToDoLists.GetFirst(l => l.Id == renameList.Id);
+            list.Name = renameList.Name;
+            _uow.ToDoLists.Update(list);
+            _uow.Commit();
+        }
+
         public void UpdateTask(string list, ToDoItem value)
         {
             value.List = _uow.ToDoLists.GetFirst(l => l.Id == list);
@@ -42,6 +50,18 @@ namespace Wunderlist.Services
         {
             return _uow.Users.GetFirst(u => u.Email == email).
                 ToDoLists.FirstOrDefault(l => l.Id == id);
+        }
+
+        public void Delete(string id)
+        {
+            var list = _uow.ToDoLists.GetFirst(i => i.Id == id);
+            foreach(var item in list.Items.ToArray())
+            {
+                _uow.ToDoItems.Delete(item);
+            }
+
+            _uow.ToDoLists.Delete(list);
+            _uow.Commit();
         }
 
         public void DeleteTask(string id)

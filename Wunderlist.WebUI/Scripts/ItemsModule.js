@@ -109,10 +109,49 @@ itemsModule.controller("addController", function ($scope, $http) {
             $http.post('../api/ToDoList', $scope.newList).success(function () {
                 $scope.lists.push($scope.newList);
                 $scope.newList = null;
+                openbox('addList');
             });
         }
     };
     
+    //------------------------------------------
+    $scope.list;
+    $scope.editToDoListShowDialog = function (list) {
+        $scope.list = list;
+        openbox('editToDoList');
+    }
+
+    $scope.editNameToDoList = function () {
+        if ($scope.list.name) {
+            $http.put('../api/ToDoList', $scope.list).success(function () {
+                openbox('editToDoList');
+                console.log($scope.list.name)
+            });
+        }
+    }
+
+
+    $scope.deleteList = function ()
+    {
+        $http.delete('../api/ToDoList/' + $scope.activeList).success(function () {
+            $http.get('../api/ToDoList').success(function (data) {
+                $scope.lists = data;
+                $scope.activeList = $scope.lists[0].id;
+
+            }).then(function () {
+                $http.get('../api/ToDoList/' + $scope.activeList).success(function (data) {
+                    console.log(data);
+                    $scope.tasks = data;
+                }).then(function () {
+                    var e = document.getElementById($scope.activeList).parentElement;
+                    console.log(e);
+                    e.classList.add("active");
+                });
+                $scope.openbox('editToDoList');
+            });
+        });
+    }
+
     $scope.checkTask = function (task) {
         task.completed = !task.completed;
         task.List = $scope.activeList;

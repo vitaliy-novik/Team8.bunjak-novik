@@ -48,6 +48,13 @@ itemsModule.controller("addController", function ($scope, $http) {
     $scope.newList = {};
 
     $scope.hideCompleted = true;
+
+    $scope.setStar = function (task) {
+        var star = document.getElementById(task.id + 'star');
+        star.classList.toggle('hidden');
+        var nostar = document.getElementById(task.id + 'nostar');
+        nostar.classList.toggle('hidden');
+    }
     
     $scope.selectList = function (param) {
         console.log(param);

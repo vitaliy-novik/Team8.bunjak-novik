@@ -104,13 +104,20 @@ itemsModule.controller("addController", function ($scope, $http) {
         $scope.hideCompleted = !$scope.hideCompleted;
     };
 
+    $scope.activeTask.getDate = function()
+    {
+        if ($scope.activeTask.date == "9999-12-31T23:59:59.997")
+            return 'Задайте дату';
+        return $scope.activeTask.date;
+    }
+
     $scope.addItem = function () {
         if (this.newTask.name) {
             $scope.newTask.completed = false;
             $scope.newTask.List = $scope.activeList;
             $scope.newTask.Date = null;
-            $http.post('../api/ToDoItems', $scope.newTask).success(function () {
-                $scope.tasks.push($scope.newTask);
+            $http.post('../api/ToDoItems', $scope.newTask).success(function (addTask) {
+                $scope.tasks.push(addTask);
                 $scope.newTask = null;
                 console.log($scope.tasks);
             });
@@ -120,8 +127,8 @@ itemsModule.controller("addController", function ($scope, $http) {
 
     $scope.addList = function () {
         if (this.newList.name) {
-            $http.post('../api/ToDoList', $scope.newList).success(function () {
-                $scope.lists.push($scope.newList);
+            $http.post('../api/ToDoList', $scope.newList).success(function (addList) {
+                $scope.lists.push(addList);
                 $scope.newList = null;
                 openbox('addList');
             });

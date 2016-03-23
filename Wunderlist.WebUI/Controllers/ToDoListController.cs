@@ -45,10 +45,10 @@ namespace Wunderlist.WebUI.Controllers
                 name = i.Name,
                 stared = i.IsStared,
                 completed = i.IsCompleted,
+                note = i.Note,
                 date = i.Date,
                 List = r.Id
-            }
-            ));
+            }));
         }
 
         public void Delete(string id)
@@ -61,9 +61,15 @@ namespace Wunderlist.WebUI.Controllers
             service.Update(new ToDoList { Id = value.Id, Name = value.Name});
         }
 
-        public void Post([FromBody]AddListViewModel value)
+        public IHttpActionResult Post([FromBody]AddListViewModel value)
         {
-            service.AddList(value.Name, User.Identity.Name);
+            string email = User.Identity.Name;
+            var list = service.AddList(value.Name, email);
+            return Ok( 
+                new{
+                    id = list.Id,
+                    name = list.Name
+                });
         }
     }
 }

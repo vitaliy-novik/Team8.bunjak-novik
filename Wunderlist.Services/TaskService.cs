@@ -12,7 +12,7 @@ namespace Wunderlist.Services
     {
         public TaskService(IUnitOfWork uow) : base(uow) { }
 
-        public void AddTask(string email, string name, DateTime date, string listId)
+        public ToDoItem AddTask(string email, string name, DateTime date, string listId)
         {
             var list = _uow.Users.GetFirst(u => u.Email == email)
                 .ToDoLists.FirstOrDefault(l => l.Id == listId);
@@ -24,6 +24,8 @@ namespace Wunderlist.Services
             };
             _uow.ToDoItems.Create(task);
             _uow.Commit();
+
+            return task;
         }
 
         public IEnumerable<ToDoList> GetAllLists(string email)
@@ -71,7 +73,7 @@ namespace Wunderlist.Services
             _uow.Commit();
         }
 
-        public void AddList(string name, string email)
+        public ToDoList AddList(string name, string email)
         {
             var user = _uow.Users.GetFirst(l => l.Email == email);
             var list = new ToDoList
@@ -82,6 +84,8 @@ namespace Wunderlist.Services
 
             _uow.ToDoLists.Create(list);
             _uow.Commit();
+
+            return list;
         }
     }
 }

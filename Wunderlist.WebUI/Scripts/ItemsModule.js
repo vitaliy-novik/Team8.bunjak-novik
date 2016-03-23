@@ -50,10 +50,17 @@ itemsModule.controller("addController", function ($scope, $http) {
     $scope.hideCompleted = true;
 
     $scope.setStar = function (task) {
-        var star = document.getElementById(task.id + 'star');
-        star.classList.toggle('hidden');
-        var nostar = document.getElementById(task.id + 'nostar');
-        nostar.classList.toggle('hidden');
+        task.stared = !task.stared;
+        task.List = $scope.activeList;
+        console.log(task);
+        $http.put('../api/ToDoItems/' + task.id, task).success(function () {
+            document.getElementById('wl3-complete').play();
+            var star = document.getElementById(task.id + 'star');
+            star.classList.toggle('hidden');
+            var nostar = document.getElementById(task.id + 'nostar');
+            nostar.classList.toggle('hidden');
+        });
+        
     }
     
     $scope.selectList = function (param) {
@@ -165,8 +172,7 @@ itemsModule.controller("addController", function ($scope, $http) {
         console.log(task);
         $http.put('../api/ToDoItems/' + task.id, task).success(function () {            
             document.getElementById('wl3-complete').play();
-        });
-        
+        });        
     };
 
     $scope.newUserName = {};

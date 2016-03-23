@@ -34,6 +34,7 @@ namespace Wunderlist.WebUI.Controllers
             {
                 Id = id,
                 IsCompleted = value.Completed,
+                IsStared = value.Stared,
                 Name = value.Name,
                 Note = value.Note,
                 Date = value.Date

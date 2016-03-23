@@ -205,4 +205,8 @@ itemsModule.controller("addController", function ($scope, $http) {
             document.getElementById(id).style.display = 'none';
         }
     }
+
+    $scope.completedTasksFilter = function (item) {
+        return !item.completed;
+    }
 });

@@ -43,6 +43,7 @@ namespace Wunderlist.WebUI.Controllers
             {
                 id = i.Id,
                 name = i.Name,
+                stared = i.IsStared,
                 completed = i.IsCompleted,
                 date = i.Date,
                 List = r.Id

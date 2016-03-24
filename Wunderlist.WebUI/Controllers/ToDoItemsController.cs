@@ -22,10 +22,22 @@ namespace Wunderlist.WebUI.Controllers
             service = new TaskService(uow);
         }
 
-        public void Post([FromBody]AddTaskViewModel value)
+        public IHttpActionResult Post([FromBody]AddTaskViewModel value)
         {
             string userName = User.Identity.Name;
-            service.AddTask(userName, value.Name, DateTime.Now, value.List);
+            var task = service.AddTask(userName, value.Name, DateTime.MaxValue, value.List);
+
+            return Ok(
+                new
+                {
+                    id = task.Id,
+                    completed = task.IsCompleted,
+                    stared = task.IsStared,
+                    name = task.Name,
+                    note = task.Note,
+                    date = task.Date
+                });
+
         }
 
         public void Put(string id, [FromBody]UpdateTaskViewModel value)

@@ -2994,7 +2994,6 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfdfd', endC
         }
         .content-fakable .display-view {
             overflow: hidden;
-            white-space: pre-wrap;
             word-wrap: break-word;
         }
 

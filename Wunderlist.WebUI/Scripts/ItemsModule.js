@@ -94,7 +94,7 @@ itemsModule.controller("addController", function ($scope, $http) {
     }
 
     $scope.editNote = function () {
-        console.dir('aaaaaa');
+        console.dir($scope.activeTask);
         $http.put('../api/ToDoItems/' + $scope.activeTask.id, $scope.activeTask).success(function () {
             $scope.openbox('detail');
         });

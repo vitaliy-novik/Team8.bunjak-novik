@@ -104,13 +104,6 @@ itemsModule.controller("addController", function ($scope, $http) {
         $scope.hideCompleted = !$scope.hideCompleted;
     };
 
-    $scope.activeTask.getDate = function()
-    {
-        if ($scope.activeTask.date == "9999-12-31T23:59:59.997")
-            return 'Задайте дату';
-        return $scope.activeTask.date;
-    }
-
     $scope.addItem = function () {
         if (this.newTask.name) {
             $scope.newTask.completed = false;

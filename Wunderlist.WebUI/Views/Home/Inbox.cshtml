@@ -498,7 +498,7 @@
                         </div>
                         <div class="section-content">
                             <div class="section-title">
-                                <text rel="placeholder_set_due_date">{{activeTask.getDate}}</text>
+                                <text rel="placeholder_set_due_date">{{activeTask.date}}</text>
                             </div>
                             <div class="section-description"></div>
                         </div>
@@ -515,12 +515,12 @@
                             </div>
                             <div class="note-body selectable">
                                 <div class="content-fakable">
-                                    <div class="display-view">
+                                    <div class="display-view hidden">
                                         <span>
                                             {{activeTask.note}}
                                         </span>
                                     </div>
-                                    <div class="edit-view hidden">
+                                    <div class="edit-view">
                                         <div class="expandingArea active">
                                             <pre style="line-height: 20px; font-size: 15px;">{{activeTask.note}}
                                             </pre>
@@ -551,8 +551,8 @@
                 <div class="container"> 
                     <div class="row">
                         <div class="form-group">
-                            <div class='input-group date' id='datetimepicker1'>
-                                <input ng-blur="editNote()" ng-model="activeTask.date" name="date" type='text' class="form-control" />
+                            <div class='input-group date' id='datetimepicker2'>
+                                <input type="datetime-local" ng-blur="editNote()" ng-model="activeTask.date" type='text' class="form-control" />
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
@@ -611,7 +611,9 @@
     </style>
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker1').datetimepicker();
+            $('#datetimepicker2').datetimepicker({
+                locale: 'ru'
+            });
         });
         function openbox(id) {
             var display = document.getElementById(id).style.display;
